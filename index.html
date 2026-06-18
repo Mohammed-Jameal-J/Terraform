@@ -1,0 +1,1048 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+:root{--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--border:#2a2a2a;--text:#f0f0f0;--muted:#888;--accent:#fff;--badge:#222}
+.wrap{background:#0a0a0a;color:#f0f0f0;min-height:100vh;padding:0}
+.hero{background:#000;border-bottom:1px solid #222;padding:2.5rem 2rem 2rem}
+.hero-tag{font-size:11px;letter-spacing:3px;color:#666;text-transform:uppercase;margin-bottom:12px}
+.hero-title{font-size:32px;font-weight:500;line-height:1.2;color:#fff}
+.hero-sub{font-size:14px;color:#888;margin-top:8px;line-height:1.6}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.badge{font-size:11px;padding:4px 10px;border:1px solid #333;border-radius:4px;color:#aaa;background:#111}
+.badge.w{border-color:#555;color:#ddd}
+.nav{display:flex;overflow-x:auto;background:#0d0d0d;border-bottom:1px solid #1e1e1e;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:12px 20px;font-size:12px;color:#666;cursor:pointer;border:none;background:none;border-bottom:2px solid transparent;transition:all .2s;letter-spacing:.5px;white-space:nowrap}
+.nav-btn:hover{color:#bbb}
+.nav-btn.active{color:#fff;border-bottom-color:#fff}
+.content{padding:2rem;max-width:860px}
+.section{display:none}
+.section.active{display:block}
+.chapter-title{font-size:22px;font-weight:500;color:#fff;margin-bottom:6px}
+.chapter-sub{font-size:13px;color:#666;margin-bottom:24px;font-family:var(--font-mono)}
+.card{background:#111;border:1px solid #1e1e1e;border-radius:8px;padding:1.25rem;margin-bottom:16px}
+.card-title{font-size:14px;font-weight:500;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.card-body{font-size:13px;color:#aaa;line-height:1.8}
+.tamil{font-size:12px;color:#666;margin-top:6px;padding-top:6px;border-top:1px solid #1e1e1e;font-style:italic}
+.code{background:#000;border:1px solid #1e1e1e;border-radius:6px;padding:1rem;font-family:var(--font-mono);font-size:12px;color:#d4d4d4;overflow-x:auto;margin:12px 0;line-height:1.7}
+.code .kw{color:#569cd6}
+.code .str{color:#ce9178}
+.code .cmt{color:#6a9955}
+.code .fn{color:#dcdcaa}
+.code .num{color:#b5cea8}
+.code .type{color:#4ec9b0}
+.highlight{color:#fff}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.tag{font-size:11px;padding:3px 8px;border-radius:3px;background:#1a1a1a;border:1px solid #2a2a2a;color:#888}
+.tag.green{border-color:#2d4a2d;color:#6abf6a;background:#0f1f0f}
+.tag.blue{border-color:#1e3a5a;color:#5aabdf;background:#0a1525}
+.tag.amber{border-color:#4a3a10;color:#d4a040;background:#1a1200}
+.tag.red{border-color:#4a1a1a;color:#e06060;background:#1a0808}
+.divider{height:1px;background:#1a1a1a;margin:20px 0}
+.diagram-wrap{background:#000;border:1px solid #1e1e1e;border-radius:8px;overflow:hidden;margin:16px 0}
+.step-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.step-item{display:flex;gap:14px;align-items:flex-start;padding:14px;background:#111;border:1px solid #1e1e1e;border-radius:6px}
+.step-num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:#1a1a1a;border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:12px;font-family:var(--font-mono);color:#888}
+.step-info{flex:1}
+.step-title{font-size:13px;font-weight:500;color:#e0e0e0;margin-bottom:4px}
+.step-desc{font-size:12px;color:#777;line-height:1.6}
+.step-tamil{font-size:11px;color:#555;margin-top:4px;font-style:italic}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-card{background:#111;border:1px solid #1e1e1e;border-radius:6px;padding:14px}
+.compare-title{font-size:12px;color:#666;margin-bottom:10px;letter-spacing:1px;text-transform:uppercase}
+.compare-item{font-size:12px;color:#999;padding:5px 0;border-bottom:1px solid #161616;display:flex;gap:8px;align-items:flex-start}
+.compare-item:last-child{border-bottom:none}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.dot.g{background:#4a9;} .dot.r{background:#c55;} .dot.b{background:#47a;}
+.arch-row{display:flex;align-items:stretch;gap:0;margin:16px 0;border:1px solid #1e1e1e;border-radius:8px;overflow:hidden}
+.arch-box{flex:1;padding:12px 14px;background:#111;border-right:1px solid #1e1e1e;text-align:center}
+.arch-box:last-child{border-right:none}
+.arch-label{font-size:11px;color:#666;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.arch-val{font-size:13px;color:#ccc}
+.arch-arrow{display:flex;align-items:center;justify-content:center;padding:0 4px;color:#444;font-size:16px;background:#0d0d0d}
+.realworld{background:#0f1a0f;border:1px solid #1e2e1e;border-radius:8px;padding:14px;margin:14px 0}
+.realworld-label{font-size:10px;letter-spacing:2px;color:#4a8a4a;text-transform:uppercase;margin-bottom:8px}
+.realworld-text{font-size:13px;color:#8ab88a;line-height:1.7}
+.progress-bar{height:3px;background:#1a1a1a;border-radius:2px;margin-bottom:24px;overflow:hidden}
+.progress-fill{height:100%;background:#444;border-radius:2px;transition:width .3s}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}
+.toc-item{background:#111;border:1px solid #1e1e1e;border-radius:6px;padding:10px 14px;cursor:pointer;transition:all .2s;display:flex;gap:10px;align-items:center}
+.toc-item:hover{border-color:#333;background:#141414}
+.toc-num{font-size:10px;font-family:var(--font-mono);color:#555;flex-shrink:0}
+.toc-name{font-size:12px;color:#999}
+.toc-lv{font-size:10px;color:#555;margin-left:auto;flex-shrink:0}
+.inline-svg{width:100%}
+.warn{background:#1a1200;border:1px solid #3a2800;border-radius:6px;padding:12px 14px;font-size:12px;color:#c8901a;margin:12px 0;line-height:1.6}
+.info{background:#0a1525;border:1px solid #1a3050;border-radius:6px;padding:12px 14px;font-size:12px;color:#5a9fcf;margin:12px 0;line-height:1.6}
+</style>
+
+<div class="wrap">
+<div class="hero">
+  <div class="hero-tag">Infrastructure as Code</div>
+  <div class="hero-title">Terraform Masterclass</div>
+  <div class="hero-sub">Basic to Expert — Definitions in English & தமிழ் · Real-world examples · Diagrams</div>
+  <div class="hero-badges">
+    <span class="badge w">Basic → Advanced → Master</span>
+    <span class="badge">HashiCorp Terraform</span>
+    <span class="badge">IaC</span>
+    <span class="badge">Black &amp; White Theme</span>
+  </div>
+</div>
+
+<div class="nav" id="nav">
+  <button class="nav-btn active" onclick="show(0)">00 · What is Terraform?</button>
+  <button class="nav-btn" onclick="show(1)">01 · Why Terraform?</button>
+  <button class="nav-btn" onclick="show(2)">02 · Architecture</button>
+  <button class="nav-btn" onclick="show(3)">03 · Core Concepts</button>
+  <button class="nav-btn" onclick="show(4)">04 · HCL Language</button>
+  <button class="nav-btn" onclick="show(5)">05 · State Management</button>
+  <button class="nav-btn" onclick="show(6)">06 · Modules</button>
+  <button class="nav-btn" onclick="show(7)">07 · Providers</button>
+  <button class="nav-btn" onclick="show(8)">08 · Workspaces</button>
+  <button class="nav-btn" onclick="show(9)">09 · Backend & Remote</button>
+  <button class="nav-btn" onclick="show(10)">10 · CI/CD Integration</button>
+  <button class="nav-btn" onclick="show(11)">11 · Best Practices</button>
+  <button class="nav-btn" onclick="show(12)">12 · Master Tips</button>
+</div>
+
+<div class="content">
+
+<!-- 00 - What is Terraform -->
+<div class="section active" id="s0">
+  <div class="chapter-title">What is Terraform?</div>
+  <div class="chapter-sub">Chapter 00 · Beginner Level</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:8%"></div></div>
+
+  <div class="card">
+    <div class="card-title">📖 Definition (English)</div>
+    <div class="card-body">Terraform is an open-source <strong style="color:#ddd">Infrastructure as Code (IaC)</strong> tool created by HashiCorp. It lets you define, provision, and manage cloud infrastructure using a declarative configuration language (HCL). Instead of clicking buttons in a cloud console, you write code that describes the infrastructure you want — and Terraform builds it.</div>
+    <div class="tamil">📖 வரையறை (தமிழ்): Terraform என்பது HashiCorp நிறுவனம் உருவாக்கிய ஒரு கருவி. இது "Infrastructure as Code" என்ற கொள்கையில் இயங்குகிறது. அதாவது, cloud-ல் servers, databases, networks போன்றவற்றை click செய்யாமல், code எழுதி create செய்யலாம். உங்கள் infrastructure-ஐ ஒரு blueprint போல் define செய்கிறீர்கள்.</div>
+  </div>
+
+  <div class="realworld">
+    <div class="realworld-label">Real-world Example</div>
+    <div class="realworld-text">
+      🏗️ <strong style="color:#aecfae">Building a house analogy:</strong> Imagine you want to build 10 identical apartments. Instead of telling the contractor verbally each time, you write a blueprint once. Terraform is that <em>blueprint for cloud infrastructure</em>. You write it once, deploy it 100 times — AWS, Azure, GCP — all from the same code.<br><br>
+      🏗️ <strong style="color:#aecfae">வீடு கட்டும் உதாரணம்:</strong> 10 apartments கட்ட வேண்டும் என்றால், ஒரு blueprint வரைந்தால் போதும், பலமுறை கட்டலாம். Terraform அதே போல cloud-ல் infrastructure build செய்யும் ஒரு blueprint.
+    </div>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg class="inline-svg" viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <!-- You -->
+      <rect x="30" y="70" width="110" height="80" rx="6" fill="#111" stroke="#2a2a2a"/>
+      <text x="85" y="103" text-anchor="middle" font-size="12" fill="#bbb" font-family="sans-serif">Developer</text>
+      <text x="85" y="120" text-anchor="middle" font-size="11" fill="#666" font-family="sans-serif">writes .tf files</text>
+      <!-- Arrow -->
+      <line x1="141" y1="110" x2="185" y2="110" stroke="#444" stroke-width="1" marker-end="url(#ar)"/>
+      <!-- Terraform -->
+      <rect x="186" y="55" width="140" height="110" rx="6" fill="#1a1a1a" stroke="#444"/>
+      <text x="256" y="90" text-anchor="middle" font-size="13" fill="#fff" font-family="sans-serif" font-weight="500">Terraform</text>
+      <text x="256" y="108" text-anchor="middle" font-size="10" fill="#777" font-family="sans-serif">Plan → Apply</text>
+      <text x="256" y="124" text-anchor="middle" font-size="10" fill="#555" font-family="sans-serif">State tracking</text>
+      <text x="256" y="140" text-anchor="middle" font-size="10" fill="#555" font-family="sans-serif">Provider plugins</text>
+      <!-- Arrow to clouds -->
+      <line x1="327" y1="80" x2="370" y2="65" stroke="#444" stroke-width="1" marker-end="url(#ar)"/>
+      <line x1="327" y1="110" x2="370" y2="110" stroke="#444" stroke-width="1" marker-end="url(#ar)"/>
+      <line x1="327" y1="140" x2="370" y2="150" stroke="#444" stroke-width="1" marker-end="url(#ar)"/>
+      <!-- AWS -->
+      <rect x="371" y="38" width="90" height="50" rx="5" fill="#111" stroke="#2a2a2a"/>
+      <text x="416" y="61" text-anchor="middle" font-size="12" fill="#d4a040" font-family="sans-serif">AWS</text>
+      <text x="416" y="78" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">EC2, S3, RDS</text>
+      <!-- Azure -->
+      <rect x="371" y="85" width="90" height="50" rx="5" fill="#111" stroke="#2a2a2a"/>
+      <text x="416" y="108" text-anchor="middle" font-size="12" fill="#5aabdf" font-family="sans-serif">Azure</text>
+      <text x="416" y="123" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">VM, Blob, SQL</text>
+      <!-- GCP -->
+      <rect x="371" y="130" width="90" height="50" rx="5" fill="#111" stroke="#2a2a2a"/>
+      <text x="416" y="153" text-anchor="middle" font-size="12" fill="#6abf6a" font-family="sans-serif">GCP</text>
+      <text x="416" y="168" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">GCE, GCS, Cloud</text>
+      <!-- Arrow to infrastructure -->
+      <line x1="462" y1="65" x2="510" y2="100" stroke="#333" stroke-width="1" marker-end="url(#ar)"/>
+      <line x1="462" y1="110" x2="510" y2="110" stroke="#333" stroke-width="1" marker-end="url(#ar)"/>
+      <line x1="462" y1="155" x2="510" y2="120" stroke="#333" stroke-width="1" marker-end="url(#ar)"/>
+      <!-- Infrastructure output -->
+      <rect x="511" y="65" width="130" height="90" rx="5" fill="#0f1a0f" stroke="#1e3a1e"/>
+      <text x="576" y="90" text-anchor="middle" font-size="11" fill="#6abf6a" font-family="sans-serif">Infrastructure</text>
+      <text x="576" y="108" text-anchor="middle" font-size="10" fill="#4a7a4a" font-family="sans-serif">Servers · DBs</text>
+      <text x="576" y="124" text-anchor="middle" font-size="10" fill="#4a7a4a" font-family="sans-serif">Networks · DNS</text>
+      <text x="576" y="140" text-anchor="middle" font-size="10" fill="#4a7a4a" font-family="sans-serif">Load Balancers</text>
+      <!-- Label -->
+      <text x="340" y="210" text-anchor="middle" font-size="11" fill="#444" font-family="sans-serif">Terraform sits between you and your cloud — translating code into real infrastructure</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔑 Key Terms</div>
+    <div class="tag-row">
+      <span class="tag green">IaC – Infrastructure as Code</span>
+      <span class="tag blue">HCL – HashiCorp Config Language</span>
+      <span class="tag amber">Declarative – Describe the end state</span>
+      <span class="tag">Idempotent – Same result every run</span>
+    </div>
+    <div class="card-body" style="margin-top:10px">
+      <strong style="color:#ccc">Declarative vs Imperative:</strong> You don't say <em>"create a server, then attach a disk, then configure network"</em>. You say <em>"I want this infrastructure to exist"</em> — Terraform figures out the steps.<br><br>
+      <strong style="color:#666">Declarative vs Imperative (தமிழ்):</strong> Bash script-ல் step-by-step சொல்வது imperative. Terraform-ல் "இந்த infrastructure வேண்டும்" என்று சொல்வது declarative.
+    </div>
+  </div>
+</div>
+
+<!-- 01 - WHY -->
+<div class="section" id="s1">
+  <div class="chapter-title">Why Do We Need Terraform?</div>
+  <div class="chapter-sub">Chapter 01 · The Problem & Solution</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:16%"></div></div>
+
+  <div class="two-col">
+    <div class="compare-card">
+      <div class="compare-title" style="color:#c55">❌ Without Terraform</div>
+      <div class="compare-item"><div class="dot r"></div>Click manually in AWS console</div>
+      <div class="compare-item"><div class="dot r"></div>Hard to reproduce exact setup</div>
+      <div class="compare-item"><div class="dot r"></div>Human errors in configuration</div>
+      <div class="compare-item"><div class="dot r"></div>No version history</div>
+      <div class="compare-item"><div class="dot r"></div>Each cloud needs different skills</div>
+      <div class="compare-item"><div class="dot r"></div>Scaling = more manual work</div>
+    </div>
+    <div class="compare-card">
+      <div class="compare-title" style="color:#4a9">✅ With Terraform</div>
+      <div class="compare-item"><div class="dot g"></div>Write code once, deploy anywhere</div>
+      <div class="compare-item"><div class="dot g"></div>100% reproducible environments</div>
+      <div class="compare-item"><div class="dot g"></div>Peer-reviewed via Git</div>
+      <div class="compare-item"><div class="dot g"></div>Track changes like source code</div>
+      <div class="compare-item"><div class="dot g"></div>One tool for AWS + Azure + GCP</div>
+      <div class="compare-item"><div class="dot g"></div>Automate with CI/CD pipelines</div>
+    </div>
+  </div>
+
+  <div class="realworld" style="margin-top:16px">
+    <div class="realworld-label">Real-world Scenario · நிஜ உலக உதாரணம்</div>
+    <div class="realworld-text">
+      🛒 <strong style="color:#aecfae">Flipkart / Amazon Sale Day:</strong> Big Billion Days / Prime Day sale-க்கு traffic 100x அதிகமாகும். Terraform இல்லாமல் — DevOps team manually 500 servers add செய்ய வேண்டும். Error possibility high, time அதிகம். Terraform-உடன் — ஒரு number மாற்றி terraform apply. 500 servers 5 minutes-ல் ready!<br><br>
+      Flipkart's infrastructure scales from 10 servers to 500 servers during Big Billion Days. With Terraform, this is a one-line change + 5 minute apply. Without it, it's 2 days of manual work and a prayer.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Terraform vs Other IaC Tools</div>
+    <div class="card-body">
+      <table style="width:100%;font-size:12px;border-collapse:collapse">
+        <tr style="border-bottom:1px solid #222">
+          <td style="padding:8px 4px;color:#666">Tool</td>
+          <td style="padding:8px 4px;color:#666">Cloud</td>
+          <td style="padding:8px 4px;color:#666">Language</td>
+          <td style="padding:8px 4px;color:#666">Style</td>
+        </tr>
+        <tr style="border-bottom:1px solid #1a1a1a">
+          <td style="padding:7px 4px;color:#fff">Terraform</td>
+          <td style="padding:7px 4px;color:#888">Multi-cloud</td>
+          <td style="padding:7px 4px;color:#888">HCL</td>
+          <td style="padding:7px 4px"><span class="tag green">Declarative</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #1a1a1a">
+          <td style="padding:7px 4px;color:#ccc">CloudFormation</td>
+          <td style="padding:7px 4px;color:#888">AWS only</td>
+          <td style="padding:7px 4px;color:#888">YAML/JSON</td>
+          <td style="padding:7px 4px"><span class="tag blue">Declarative</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #1a1a1a">
+          <td style="padding:7px 4px;color:#ccc">Ansible</td>
+          <td style="padding:7px 4px;color:#888">Multi</td>
+          <td style="padding:7px 4px;color:#888">YAML</td>
+          <td style="padding:7px 4px"><span class="tag amber">Imperative</span></td>
+        </tr>
+        <tr>
+          <td style="padding:7px 4px;color:#ccc">Pulumi</td>
+          <td style="padding:7px 4px;color:#888">Multi-cloud</td>
+          <td style="padding:7px 4px;color:#888">Python/JS</td>
+          <td style="padding:7px 4px"><span class="tag green">Declarative</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 02 - Architecture -->
+<div class="section" id="s2">
+  <div class="chapter-title">Terraform Architecture</div>
+  <div class="chapter-sub">Chapter 02 · How It Works Internally</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:24%"></div></div>
+
+  <div class="diagram-wrap">
+    <svg class="inline-svg" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <!-- Core layer -->
+      <rect x="210" y="20" width="260" height="60" rx="8" fill="#1a1a1a" stroke="#444"/>
+      <text x="340" y="46" text-anchor="middle" font-size="13" fill="#fff" font-family="sans-serif" font-weight="500">Terraform Core</text>
+      <text x="340" y="64" text-anchor="middle" font-size="11" fill="#777" font-family="sans-serif">Plan, Graph, Apply engine</text>
+      <!-- State -->
+      <rect x="30" y="140" width="130" height="55" rx="6" fill="#111" stroke="#333"/>
+      <text x="95" y="163" text-anchor="middle" font-size="12" fill="#d4a040" font-family="sans-serif">State File</text>
+      <text x="95" y="179" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">terraform.tfstate</text>
+      <!-- Config files -->
+      <rect x="200" y="140" width="130" height="55" rx="6" fill="#111" stroke="#333"/>
+      <text x="265" y="163" text-anchor="middle" font-size="12" fill="#5aabdf" font-family="sans-serif">Config Files</text>
+      <text x="265" y="179" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">main.tf, vars.tf</text>
+      <!-- Providers -->
+      <rect x="370" y="140" width="130" height="55" rx="6" fill="#111" stroke="#333"/>
+      <text x="435" y="163" text-anchor="middle" font-size="12" fill="#6abf6a" font-family="sans-serif">Providers</text>
+      <text x="435" y="179" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">AWS / Azure / GCP</text>
+      <!-- Arrows from core -->
+      <line x1="250" y1="80" x2="110" y2="140" stroke="#333" stroke-width="1" marker-end="url(#ar2)"/>
+      <line x1="300" y1="80" x2="265" y2="140" stroke="#333" stroke-width="1" marker-end="url(#ar2)"/>
+      <line x1="380" y1="80" x2="435" y2="140" stroke="#333" stroke-width="1" marker-end="url(#ar2)"/>
+      <!-- Cloud APIs -->
+      <rect x="30" y="240" width="90" height="40" rx="4" fill="#0d1a0d" stroke="#1e3a1e"/>
+      <text x="75" y="265" text-anchor="middle" font-size="11" fill="#6abf6a" font-family="sans-serif">AWS API</text>
+      <rect x="140" y="240" width="90" height="40" rx="4" fill="#0d1525" stroke="#1a3050"/>
+      <text x="185" y="265" text-anchor="middle" font-size="11" fill="#5aabdf" font-family="sans-serif">Azure API</text>
+      <rect x="250" y="240" width="90" height="40" rx="4" fill="#0f1a0f" stroke="#1e3a1e"/>
+      <text x="295" y="265" text-anchor="middle" font-size="11" fill="#6abf6a" font-family="sans-serif">GCP API</text>
+      <!-- Arrows provider to clouds -->
+      <line x1="400" y1="196" x2="100" y2="240" stroke="#222" stroke-width="1" marker-end="url(#ar2)"/>
+      <line x1="430" y1="196" x2="200" y2="240" stroke="#222" stroke-width="1" marker-end="url(#ar2)"/>
+      <line x1="460" y1="196" x2="295" y2="240" stroke="#222" stroke-width="1" marker-end="url(#ar2)"/>
+      <!-- Legend -->
+      <text x="340" y="295" text-anchor="middle" font-size="10" fill="#444" font-family="sans-serif">Terraform Core reads config + state → calls provider plugins → providers call cloud APIs</text>
+    </svg>
+  </div>
+
+  <div class="step-grid">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-info">
+        <div class="step-title">Terraform Core</div>
+        <div class="step-desc">The brain. Reads your .tf config files, compares desired state vs current state, builds an execution graph, and orchestrates the apply process.</div>
+        <div class="step-tamil">Core — உங்கள் config files படிக்கும், plan செய்யும், apply செய்யும் — இது Terraform-இன் brain.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-info">
+        <div class="step-title">State File (terraform.tfstate)</div>
+        <div class="step-desc">Terraform's memory. Tracks every resource it manages. On next apply, it compares real infrastructure against this file to detect what needs to change.</div>
+        <div class="step-tamil">State file = Terraform-இன் நினைவாற்றல். "என்ன create செய்தோம்" என்று இங்கே சேமிக்கப்படும்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-info">
+        <div class="step-title">Provider Plugins</div>
+        <div class="step-desc">Adapters for each cloud/service. AWS provider knows how to talk to AWS API. Azure provider to Azure ARM. You can even have Kubernetes, GitHub, Datadog providers.</div>
+        <div class="step-tamil">Provider = cloud API-ஓடு பேசும் translator. AWS provider AWS-ஓடு, Azure provider Azure-ஓடு communicate செய்யும்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-info">
+        <div class="step-title">Configuration Files (.tf)</div>
+        <div class="step-desc">Your infrastructure blueprint. Written in HCL (HashiCorp Configuration Language). Defines resources, variables, outputs, and data sources.</div>
+        <div class="step-tamil">Configuration files — உங்கள் infrastructure-ஐ describe செய்யும் blueprint files. HCL language-ல் எழுதப்படும்.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 - Core Concepts -->
+<div class="section" id="s3">
+  <div class="chapter-title">Core Concepts</div>
+  <div class="chapter-sub">Chapter 03 · Fundamentals You Must Know</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:32%"></div></div>
+
+  <div class="step-grid">
+    <div class="step-item">
+      <div class="step-num">①</div>
+      <div class="step-info">
+        <div class="step-title">init — Initialize</div>
+        <div class="step-desc">Downloads providers, sets up backend, prepares working directory. First command to run in any new Terraform project.</div>
+        <div class="step-tamil">init — providers download செய்யும், project ready செய்யும். புதிய project-ல் முதல் command.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">②</div>
+      <div class="step-info">
+        <div class="step-title">plan — Preview Changes</div>
+        <div class="step-desc">Dry run. Shows what Terraform will create, modify, or destroy. Never applies anything — just shows the plan. Always run before apply!</div>
+        <div class="step-tamil">plan — "என்ன நடக்கும்" என்று preview காட்டும். Actually எதுவும் create/destroy ஆகாது. Apply-க்கு முன் எப்போதும் plan run செய்யுங்கள்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">③</div>
+      <div class="step-info">
+        <div class="step-title">apply — Execute</div>
+        <div class="step-desc">Actually creates/modifies/destroys infrastructure. Asks for confirmation (yes/no) unless you pass -auto-approve. Updates the state file after.</div>
+        <div class="step-tamil">apply — actual-ஆக infrastructure create/change/delete செய்யும். Confirmation கேட்கும், "yes" type செய்தால் proceed ஆகும்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">④</div>
+      <div class="step-info">
+        <div class="step-title">destroy — Tear Down</div>
+        <div class="step-desc">Removes all resources Terraform manages. Useful for dev/test environments. Be careful in production!</div>
+        <div class="step-tamil">destroy — Terraform manage செய்யும் அனைத்தையும் delete செய்யும். Dev/test environment-க்கு useful. Production-ல் கவனமாக!</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">⑤</div>
+      <div class="step-info">
+        <div class="step-title">Resource</div>
+        <div class="step-desc">The fundamental building block. An EC2 instance, S3 bucket, security group, RDS database — all are resources. Defined with <code style="color:#d4d4d4;font-family:monospace">resource "type" "name" {}</code></div>
+        <div class="step-tamil">Resource — Terraform-ல் create செய்யும் ஒவ்வொரு item-உம் resource. EC2 instance, S3 bucket — அனைத்தும் resources.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">⑥</div>
+      <div class="step-info">
+        <div class="step-title">Data Source</div>
+        <div class="step-desc">Read-only. Fetch info from existing infrastructure (not managed by Terraform). E.g., get the latest Amazon Linux AMI ID without hardcoding it.</div>
+        <div class="step-tamil">Data source — Terraform manage செய்யாத existing infrastructure info-ஐ read செய்யும். E.g. latest AMI ID automatically fetch.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diagram-wrap" style="margin-top:20px">
+    <svg class="inline-svg" viewBox="0 0 680 110" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect x="20" y="30" width="90" height="50" rx="5" fill="#111" stroke="#333"/>
+      <text x="65" y="54" text-anchor="middle" font-size="12" fill="#fff" font-family="sans-serif">terraform</text>
+      <text x="65" y="70" text-anchor="middle" font-size="11" fill="#666" font-family="sans-serif">init</text>
+      <line x1="111" y1="55" x2="145" y2="55" stroke="#444" stroke-width="1" marker-end="url(#ar3)"/>
+      <rect x="146" y="30" width="90" height="50" rx="5" fill="#111" stroke="#444"/>
+      <text x="191" y="54" text-anchor="middle" font-size="12" fill="#fff" font-family="sans-serif">terraform</text>
+      <text x="191" y="70" text-anchor="middle" font-size="11" fill="#5aabdf" font-family="sans-serif">plan</text>
+      <line x1="237" y1="55" x2="271" y2="55" stroke="#444" stroke-width="1" marker-end="url(#ar3)"/>
+      <rect x="272" y="30" width="90" height="50" rx="5" fill="#111" stroke="#444"/>
+      <text x="317" y="54" text-anchor="middle" font-size="12" fill="#fff" font-family="sans-serif">terraform</text>
+      <text x="317" y="70" text-anchor="middle" font-size="11" fill="#6abf6a" font-family="sans-serif">apply</text>
+      <line x1="363" y1="55" x2="397" y2="55" stroke="#444" stroke-width="1" marker-end="url(#ar3)"/>
+      <rect x="398" y="30" width="120" height="50" rx="5" fill="#0f1a0f" stroke="#2e4a2e"/>
+      <text x="458" y="54" text-anchor="middle" font-size="12" fill="#6abf6a" font-family="sans-serif">Infrastructure</text>
+      <text x="458" y="70" text-anchor="middle" font-size="10" fill="#4a7a4a" font-family="sans-serif">Created!</text>
+      <line x1="519" y1="55" x2="553" y2="55" stroke="#333" stroke-width="1" marker-end="url(#ar3)"/>
+      <rect x="554" y="30" width="100" height="50" rx="5" fill="#1a0808" stroke="#4a1a1a"/>
+      <text x="604" y="54" text-anchor="middle" font-size="12" fill="#e06060" font-family="sans-serif">terraform</text>
+      <text x="604" y="70" text-anchor="middle" font-size="11" fill="#a04040" font-family="sans-serif">destroy</text>
+      <text x="340" y="100" text-anchor="middle" font-size="10" fill="#444" font-family="sans-serif">Terraform lifecycle: init → plan → apply → (optional) destroy</text>
+    </svg>
+  </div>
+</div>
+
+<!-- 04 - HCL -->
+<div class="section" id="s4">
+  <div class="chapter-title">HCL Language</div>
+  <div class="chapter-sub">Chapter 04 · HashiCorp Configuration Language</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+
+  <div class="card">
+    <div class="card-title">HCL Basics — Building Blocks</div>
+    <div class="card-body">HCL is human-readable, JSON-compatible, and uses blocks, arguments, and expressions. Think of it as JSON with superpowers — comments, functions, loops, conditions.</div>
+    <div class="tamil">HCL = Human-readable config language. JSON போலவே உள்ளது, ஆனால் comments, loops, conditions support செய்யும். மனிதர்கள் எளிதாக படிக்கலாம்.</div>
+  </div>
+
+  <div class="code">
+<span class="cmt"># Provider configuration</span>
+<span class="kw">terraform</span> {
+  required_providers {
+    <span class="fn">aws</span> = {
+      source  = <span class="str">"hashicorp/aws"</span>
+      version = <span class="str">"~> 5.0"</span>
+    }
+  }
+}
+
+<span class="kw">provider</span> <span class="str">"aws"</span> {
+  region = <span class="str">"ap-south-1"</span>  <span class="cmt"># Mumbai region — India</span>
+}
+  </div>
+
+  <div class="code">
+<span class="cmt"># Variables — like function parameters</span>
+<span class="kw">variable</span> <span class="str">"instance_type"</span> {
+  description = <span class="str">"EC2 instance type"</span>
+  type        = <span class="type">string</span>
+  default     = <span class="str">"t3.micro"</span>
+}
+
+<span class="kw">variable</span> <span class="str">"environment"</span> {
+  type    = <span class="type">string</span>  <span class="cmt"># "dev", "staging", "prod"</span>
+}
+  </div>
+
+  <div class="code">
+<span class="cmt"># Resource — the core building block</span>
+<span class="kw">resource</span> <span class="str">"aws_instance"</span> <span class="str">"web_server"</span> {
+  ami           = <span class="str">"ami-0c55b159cbfafe1f0"</span>
+  instance_type = <span class="fn">var</span>.instance_type  <span class="cmt"># reference variable</span>
+
+  tags = {
+    Name        = <span class="str">"MyWebServer-${var.environment}"</span>
+    Environment = <span class="fn">var</span>.environment
+    ManagedBy   = <span class="str">"Terraform"</span>
+  }
+}
+  </div>
+
+  <div class="code">
+<span class="cmt"># Outputs — expose values after apply</span>
+<span class="kw">output</span> <span class="str">"server_ip"</span> {
+  description = <span class="str">"Public IP of the web server"</span>
+  value       = <span class="fn">aws_instance</span>.web_server.public_ip
+}
+
+<span class="cmt"># Data source — read existing resources</span>
+<span class="kw">data</span> <span class="str">"aws_ami"</span> <span class="str">"latest_amazon_linux"</span> {
+  most_recent = <span class="num">true</span>
+  owners      = [<span class="str">"amazon"</span>]
+  filter {
+    name   = <span class="str">"name"</span>
+    values = [<span class="str">"amzn2-ami-hvm-*-x86_64-gp2"</span>]
+  }
+}
+  </div>
+
+  <div class="realworld">
+    <div class="realworld-label">Real-world Example — E-commerce Startup</div>
+    <div class="realworld-text">
+      🛍️ Chennai-based e-commerce startup "ShopDesi" needs 3 environments: dev, staging, prod. With Terraform variables and workspaces, same .tf files create different-sized infra per environment. Dev = t3.micro (cheap), Prod = t3.xlarge (powerful). One codebase, three environments.<br><br>
+      Chennai startup "ShopDesi" — dev, staging, prod — மூன்று environments-க்கும் same Terraform code. Variable-ல் instance type மாறும். Dev-ல் cheap server, prod-ல் powerful server. ஒரே code, மூன்று environments!
+    </div>
+  </div>
+</div>
+
+<!-- 05 - State -->
+<div class="section" id="s5">
+  <div class="chapter-title">State Management</div>
+  <div class="chapter-sub">Chapter 05 · terraform.tfstate — The Heart of Terraform</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:48%"></div></div>
+
+  <div class="card">
+    <div class="card-title">What is State?</div>
+    <div class="card-body">Terraform state is a JSON file that maps your config to real-world resources. It stores IDs, metadata, and attribute values of every resource Terraform manages. Without state, Terraform can't know what already exists.</div>
+    <div class="tamil">State file — Terraform-இன் memory. "AWS-ல் i-0abc123 என்ற instance create செய்தோம், அது web_server resource" என்று இங்கே track செய்யும். இதன் மூலம் Terraform என்ன already உள்ளது, என்ன change செய்யணும் என்று தெரியும்.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="compare-card">
+      <div class="compare-title" style="color:#c55">❌ Local State (Bad for Teams)</div>
+      <div class="compare-item"><div class="dot r"></div>Only on your laptop</div>
+      <div class="compare-item"><div class="dot r"></div>Team can't share it</div>
+      <div class="compare-item"><div class="dot r"></div>No locking — concurrent apply = disaster</div>
+      <div class="compare-item"><div class="dot r"></div>Lost if disk fails</div>
+    </div>
+    <div class="compare-card">
+      <div class="compare-title" style="color:#4a9">✅ Remote State (Team-ready)</div>
+      <div class="compare-item"><div class="dot g"></div>Stored in S3 / GCS / Azure Blob</div>
+      <div class="compare-item"><div class="dot g"></div>Team shares same state</div>
+      <div class="compare-item"><div class="dot g"></div>State locking via DynamoDB</div>
+      <div class="compare-item"><div class="dot g"></div>Versioned and backed up</div>
+    </div>
+  </div>
+
+  <div class="code" style="margin-top:16px">
+<span class="cmt"># Remote backend — store state in S3 (Best Practice)</span>
+<span class="kw">terraform</span> {
+  backend <span class="str">"s3"</span> {
+    bucket         = <span class="str">"my-terraform-state-bucket"</span>
+    key            = <span class="str">"prod/terraform.tfstate"</span>
+    region         = <span class="str">"ap-south-1"</span>
+    encrypt        = <span class="num">true</span>
+
+    <span class="cmt"># DynamoDB for state locking</span>
+    dynamodb_table = <span class="str">"terraform-state-lock"</span>
+  }
+}
+  </div>
+
+  <div class="card">
+    <div class="card-title">State Commands</div>
+    <div class="card-body">
+      <code style="color:#d4a040;font-size:12px;font-family:monospace">terraform state list</code> — List all resources in state<br>
+      <code style="color:#d4a040;font-size:12px;font-family:monospace">terraform state show aws_instance.web</code> — Show resource details<br>
+      <code style="color:#d4a040;font-size:12px;font-family:monospace">terraform state mv</code> — Rename/move resource in state<br>
+      <code style="color:#d4a040;font-size:12px;font-family:monospace">terraform state rm</code> — Remove resource from state (not from cloud)<br>
+      <code style="color:#d4a040;font-size:12px;font-family:monospace">terraform import</code> — Import existing resource into state
+    </div>
+    <div class="tamil" style="margin-top:10px">State commands: list → எல்லா resources பார்க்க | show → ஒரு resource details | mv → rename | rm → state-ல் இருந்து நீக்க (cloud-ல் இருக்கும்) | import → already உள்ள resource-ஐ Terraform-க்கு add செய்ய</div>
+  </div>
+
+  <div class="warn">⚠️ <strong>Never manually edit terraform.tfstate!</strong> Corrupt state = Terraform loses track of your entire infrastructure. Always use terraform state commands. | ⚠️ terraform.tfstate-ஐ manually edit செய்யாதீர்கள். State corrupt ஆனால் Terraform-க்கு infrastructure பற்றி எதுவும் தெரியாமல் போகும்.</div>
+</div>
+
+<!-- 06 - Modules -->
+<div class="section" id="s6">
+  <div class="chapter-title">Modules</div>
+  <div class="chapter-sub">Chapter 06 · Reusable Infrastructure Components</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:56%"></div></div>
+
+  <div class="card">
+    <div class="card-title">What is a Module?</div>
+    <div class="card-body">A module is a container for multiple resources used together. Think of it like a function in programming — write once, call many times with different parameters. Modules enable DRY (Don't Repeat Yourself) infrastructure code.</div>
+    <div class="tamil">Module = programming-ல் function போல். ஒரு module-ல் பல resources define செய்யலாம், பலமுறை call செய்யலாம். "VPC module" ஒரு முறை எழுதி, dev, staging, prod — எல்லா environment-லயும் use செய்யலாம்.</div>
+  </div>
+
+  <div class="diagram-wrap">
+    <svg class="inline-svg" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="ar4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <!-- Root module -->
+      <rect x="20" y="60" width="140" height="80" rx="6" fill="#1a1a1a" stroke="#444"/>
+      <text x="90" y="93" text-anchor="middle" font-size="13" fill="#fff" font-family="sans-serif" font-weight="500">Root Module</text>
+      <text x="90" y="110" text-anchor="middle" font-size="11" fill="#777" font-family="sans-serif">main.tf</text>
+      <text x="90" y="126" text-anchor="middle" font-size="10" fill="#555" font-family="sans-serif">calls child modules</text>
+      <!-- Arrow -->
+      <line x1="161" y1="100" x2="200" y2="75" stroke="#333" stroke-width="1" marker-end="url(#ar4)"/>
+      <line x1="161" y1="100" x2="200" y2="100" stroke="#333" stroke-width="1" marker-end="url(#ar4)"/>
+      <line x1="161" y1="100" x2="200" y2="125" stroke="#333" stroke-width="1" marker-end="url(#ar4)"/>
+      <!-- Child modules -->
+      <rect x="201" y="40" width="120" height="50" rx="5" fill="#111" stroke="#333"/>
+      <text x="261" y="61" text-anchor="middle" font-size="12" fill="#d4a040" font-family="sans-serif">VPC Module</text>
+      <text x="261" y="77" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">subnets, routing</text>
+      <rect x="201" y="100" width="120" height="50" rx="5" fill="#111" stroke="#333"/>
+      <text x="261" y="121" text-anchor="middle" font-size="12" fill="#5aabdf" font-family="sans-serif">EC2 Module</text>
+      <text x="261" y="137" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">instances, SGs</text>
+      <rect x="201" y="110" width="120" height="50" rx="5" fill="#111" stroke="#1a1a1a"/>
+      <rect x="201" y="158" width="120" height="50" rx="5" fill="#111" stroke="#333"/>
+      <text x="261" y="179" text-anchor="middle" font-size="12" fill="#6abf6a" font-family="sans-serif">RDS Module</text>
+      <text x="261" y="195" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">db, backups, SG</text>
+      <!-- arrows to cloud -->
+      <line x1="322" y1="65" x2="370" y2="100" stroke="#222" stroke-width="1" marker-end="url(#ar4)"/>
+      <line x1="322" y1="125" x2="370" y2="110" stroke="#222" stroke-width="1" marker-end="url(#ar4)"/>
+      <line x1="322" y1="183" x2="370" y2="120" stroke="#222" stroke-width="1" marker-end="url(#ar4)"/>
+      <rect x="371" y="60" width="130" height="80" rx="6" fill="#0f1a0f" stroke="#2e4a2e"/>
+      <text x="436" y="90" text-anchor="middle" font-size="12" fill="#6abf6a" font-family="sans-serif">AWS Cloud</text>
+      <text x="436" y="108" text-anchor="middle" font-size="10" fill="#4a7a4a" font-family="sans-serif">VPC + EC2 + RDS</text>
+      <text x="436" y="124" text-anchor="middle" font-size="10" fill="#3a6a3a" font-family="sans-serif">all created!</text>
+      <!-- Registry note -->
+      <rect x="525" y="40" width="140" height="120" rx="6" fill="#111" stroke="#1e1e1e"/>
+      <text x="595" y="62" text-anchor="middle" font-size="11" fill="#888" font-family="sans-serif">Terraform Registry</text>
+      <text x="595" y="80" text-anchor="middle" font-size="10" fill="#555" font-family="sans-serif">registry.terraform.io</text>
+      <text x="595" y="98" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">Pre-built modules:</text>
+      <text x="595" y="114" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">terraform-aws-vpc</text>
+      <text x="595" y="130" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">terraform-aws-eks</text>
+      <text x="595" y="146" text-anchor="middle" font-size="10" fill="#555" font-family="sans-serif">1000s of modules</text>
+    </svg>
+  </div>
+
+  <div class="code">
+<span class="cmt"># Using a module — like calling a function</span>
+<span class="kw">module</span> <span class="str">"vpc"</span> {
+  source  = <span class="str">"terraform-aws-modules/vpc/aws"</span>
+  version = <span class="str">"~> 5.0"</span>
+
+  name = <span class="str">"my-vpc"</span>
+  cidr = <span class="str">"10.0.0.0/16"</span>
+
+  azs             = [<span class="str">"ap-south-1a"</span>, <span class="str">"ap-south-1b"</span>]
+  private_subnets = [<span class="str">"10.0.1.0/24"</span>, <span class="str">"10.0.2.0/24"</span>]
+  public_subnets  = [<span class="str">"10.0.101.0/24"</span>, <span class="str">"10.0.102.0/24"</span>]
+
+  enable_nat_gateway = <span class="num">true</span>
+}
+
+<span class="cmt"># Reference module outputs</span>
+<span class="kw">resource</span> <span class="str">"aws_instance"</span> <span class="str">"app"</span> {
+  subnet_id = <span class="fn">module</span>.vpc.private_subnets[<span class="num">0</span>]
+}
+  </div>
+</div>
+
+<!-- 07 - Providers -->
+<div class="section" id="s7">
+  <div class="chapter-title">Providers</div>
+  <div class="chapter-sub">Chapter 07 · Connecting to Cloud Services</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:64%"></div></div>
+
+  <div class="card">
+    <div class="card-title">What is a Provider?</div>
+    <div class="card-body">Providers are plugins that Terraform uses to interact with cloud platforms, SaaS tools, and APIs. Each provider adds a set of resource types and data sources. There are 3,000+ providers in the Terraform Registry.</div>
+    <div class="tamil">Provider = Terraform-க்கும் cloud/service-க்கும் இடையிலான translator plugin. AWS provider, Azure provider, Kubernetes provider, GitHub provider — இவை எல்லாம் Terraform-க்கு different services-ஐ manage செய்ய help செய்யும்.</div>
+  </div>
+
+  <div class="code">
+<span class="cmt"># Multi-provider setup — AWS + GitHub + Datadog</span>
+<span class="kw">terraform</span> {
+  required_providers {
+    aws = {
+      source  = <span class="str">"hashicorp/aws"</span>
+      version = <span class="str">"~> 5.0"</span>
+    }
+    github = {
+      source  = <span class="str">"integrations/github"</span>
+      version = <span class="str">"~> 6.0"</span>
+    }
+    datadog = {
+      source  = <span class="str">"DataDog/datadog"</span>
+      version = <span class="str">"~> 3.0"</span>
+    }
+  }
+}
+
+<span class="cmt"># AWS provider — multiple regions using aliases</span>
+<span class="kw">provider</span> <span class="str">"aws"</span> {
+  alias  = <span class="str">"mumbai"</span>
+  region = <span class="str">"ap-south-1"</span>
+}
+
+<span class="kw">provider</span> <span class="str">"aws"</span> {
+  alias  = <span class="str">"us_east"</span>
+  region = <span class="str">"us-east-1"</span>
+}
+
+<span class="kw">resource</span> <span class="str">"aws_s3_bucket"</span> <span class="str">"backup"</span> {
+  provider = <span class="fn">aws.us_east</span>   <span class="cmt"># use US region</span>
+  bucket   = <span class="str">"my-backup-bucket"</span>
+}
+  </div>
+
+  <div class="card">
+    <div class="card-title">Popular Providers</div>
+    <div class="tag-row">
+      <span class="tag amber">hashicorp/aws — Amazon Web Services</span>
+      <span class="tag blue">hashicorp/azurerm — Microsoft Azure</span>
+      <span class="tag green">hashicorp/google — Google Cloud</span>
+      <span class="tag">hashicorp/kubernetes — K8s clusters</span>
+      <span class="tag">hashicorp/helm — Helm charts</span>
+      <span class="tag">integrations/github — GitHub repos</span>
+      <span class="tag">DataDog/datadog — Monitoring</span>
+      <span class="tag">cloudflare/cloudflare — DNS/CDN</span>
+    </div>
+    <div class="tamil" style="margin-top:10px">AWS, Azure, GCP போன்ற cloud providers மட்டுமல்ல — GitHub, Datadog, Cloudflare, MongoDB Atlas, Kubernetes — எல்லாவற்றையும் Terraform manage செய்யலாம்!</div>
+  </div>
+</div>
+
+<!-- 08 - Workspaces -->
+<div class="section" id="s8">
+  <div class="chapter-title">Workspaces</div>
+  <div class="chapter-sub">Chapter 08 · Multiple Environments, One Codebase</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+
+  <div class="card">
+    <div class="card-title">What are Workspaces?</div>
+    <div class="card-body">Workspaces allow multiple state files from the same configuration. Each workspace has its own isolated state. Useful for managing dev/staging/prod without duplicating code. Default workspace is always "default".</div>
+    <div class="tamil">Workspace = same code, different environments. dev workspace-ல் dev state file, prod workspace-ல் prod state file. ஒரே .tf files-ஐ பயன்படுத்தி multiple environments manage செய்யலாம்.</div>
+  </div>
+
+  <div class="code">
+<span class="cmt"># Workspace commands</span>
+$ terraform workspace list          <span class="cmt"># show all workspaces</span>
+$ terraform workspace new dev        <span class="cmt"># create dev workspace</span>
+$ terraform workspace new staging
+$ terraform workspace new prod
+$ terraform workspace select prod    <span class="cmt"># switch to prod</span>
+$ terraform workspace show           <span class="cmt"># current workspace</span>
+  </div>
+
+  <div class="code">
+<span class="cmt"># Use workspace name in resources</span>
+<span class="kw">locals</span> {
+  env = <span class="fn">terraform</span>.workspace  <span class="cmt"># "dev", "staging", "prod"</span>
+
+  instance_sizes = {
+    dev     = <span class="str">"t3.micro"</span>
+    staging = <span class="str">"t3.medium"</span>
+    prod    = <span class="str">"t3.xlarge"</span>
+  }
+}
+
+<span class="kw">resource</span> <span class="str">"aws_instance"</span> <span class="str">"app"</span> {
+  instance_type = <span class="fn">local</span>.instance_sizes[local.env]
+  tags = {
+    Environment = <span class="fn">local</span>.env
+  }
+}
+  </div>
+
+  <div class="realworld">
+    <div class="realworld-label">Real-world: Ola Cabs / Swiggy Infra</div>
+    <div class="realworld-text">
+      🚕 Swiggy has 4 environments: dev (developers test features), QA (testing team verifies), staging (production mirror), prod (live users). All 4 use identical Terraform code but different workspaces. Prod uses 50 EC2 instances; dev uses 2. Same codebase, workspace handles the difference!<br><br>
+      Swiggy — dev, QA, staging, prod — நான்கு environments. Same Terraform code, different workspaces. Prod-ல் 50 servers, dev-ல் 2 servers. Workspace மட்டும் மாற்றினால் போதும்!
+    </div>
+  </div>
+</div>
+
+<!-- 09 - Backend -->
+<div class="section" id="s9">
+  <div class="chapter-title">Backend & Remote State</div>
+  <div class="chapter-sub">Chapter 09 · Team Collaboration at Scale</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+
+  <div class="card">
+    <div class="card-title">Backend Types</div>
+    <div class="card-body">Backends determine where Terraform stores its state and where operations run. Local backend (default) keeps state on disk. Remote backends store in cloud storage and support collaboration features like state locking.</div>
+    <div class="tamil">Backend = state எங்கே store ஆகும் என்று decide செய்யும். Local backend = உங்கள் laptop-ல். Remote backend = S3/Azure Blob/GCS-ல். Team work-க்கு remote backend mandatory.</div>
+  </div>
+
+  <div class="code">
+<span class="cmt"># Terraform Cloud / HCP Terraform backend</span>
+<span class="kw">terraform</span> {
+  cloud {
+    organization = <span class="str">"my-company"</span>
+    workspaces {
+      name = <span class="str">"production"</span>
+    }
+  }
+}
+  </div>
+
+  <div class="step-grid">
+    <div class="step-item">
+      <div class="step-num">S3</div>
+      <div class="step-info">
+        <div class="step-title">AWS S3 + DynamoDB</div>
+        <div class="step-desc">Most common for AWS shops. S3 stores state file (encrypted, versioned). DynamoDB table provides state locking (only one person applies at a time). Free tier friendly.</div>
+        <div class="step-tamil">AWS S3-ல் state file, DynamoDB-ல் locking. ஒரே நேரத்தில் 2 பேர் apply செய்தால் conflict வராது.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">TFC</div>
+      <div class="step-info">
+        <div class="step-title">Terraform Cloud (HCP Terraform)</div>
+        <div class="step-desc">HashiCorp's managed solution. Handles state, locking, remote plan/apply, secret management, policy enforcement, and audit logs. Free tier for small teams.</div>
+        <div class="step-tamil">HashiCorp-இன் managed service. State, locking, CI/CD, secrets — எல்லாமே ஒரே platform-ல். Small teams-க்கு free.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10 - CI/CD -->
+<div class="section" id="s10">
+  <div class="chapter-title">CI/CD Integration</div>
+  <div class="chapter-sub">Chapter 10 · Automate Your Infrastructure Pipeline</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div>
+
+  <div class="diagram-wrap">
+    <svg class="inline-svg" viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="ar5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect x="15" y="55" width="80" height="50" rx="5" fill="#111" stroke="#333"/>
+      <text x="55" y="77" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">Git Push</text>
+      <text x="55" y="92" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">PR opened</text>
+      <line x1="96" y1="80" x2="115" y2="80" stroke="#444" stroke-width="1" marker-end="url(#ar5)"/>
+      <rect x="116" y="40" width="100" height="80" rx="5" fill="#111" stroke="#333"/>
+      <text x="166" y="67" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">Lint Check</text>
+      <text x="166" y="82" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">terraform fmt</text>
+      <text x="166" y="97" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">terraform validate</text>
+      <text x="166" y="112" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">tflint / checkov</text>
+      <line x1="217" y1="80" x2="236" y2="80" stroke="#444" stroke-width="1" marker-end="url(#ar5)"/>
+      <rect x="237" y="40" width="100" height="80" rx="5" fill="#111" stroke="#444"/>
+      <text x="287" y="67" text-anchor="middle" font-size="10" fill="#5aabdf" font-family="sans-serif">terraform plan</text>
+      <text x="287" y="82" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">Post plan output</text>
+      <text x="287" y="97" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">to PR comment</text>
+      <text x="287" y="112" text-anchor="middle" font-size="10" fill="#555" font-family="sans-serif">Review changes</text>
+      <line x1="338" y1="80" x2="357" y2="80" stroke="#444" stroke-width="1" marker-end="url(#ar5)"/>
+      <rect x="358" y="55" width="80" height="50" rx="5" fill="#1a1200" stroke="#3a2800"/>
+      <text x="398" y="77" text-anchor="middle" font-size="10" fill="#d4a040" font-family="sans-serif">Human</text>
+      <text x="398" y="92" text-anchor="middle" font-size="10" fill="#a07820" font-family="sans-serif">Approval</text>
+      <line x1="439" y1="80" x2="458" y2="80" stroke="#444" stroke-width="1" marker-end="url(#ar5)"/>
+      <rect x="459" y="40" width="100" height="80" rx="5" fill="#0f1a0f" stroke="#2e4a2e"/>
+      <text x="509" y="67" text-anchor="middle" font-size="10" fill="#6abf6a" font-family="sans-serif">terraform apply</text>
+      <text x="509" y="82" text-anchor="middle" font-size="10" fill="#4a7a4a" font-family="sans-serif">-auto-approve</text>
+      <text x="509" y="97" text-anchor="middle" font-size="10" fill="#4a7a4a" font-family="sans-serif">on merge to main</text>
+      <text x="509" y="112" text-anchor="middle" font-size="10" fill="#3a6a3a" font-family="sans-serif">State updated</text>
+      <line x1="560" y1="80" x2="579" y2="80" stroke="#333" stroke-width="1" marker-end="url(#ar5)"/>
+      <rect x="580" y="55" width="80" height="50" rx="5" fill="#111" stroke="#222"/>
+      <text x="620" y="77" text-anchor="middle" font-size="10" fill="#ccc" font-family="sans-serif">Notify</text>
+      <text x="620" y="92" text-anchor="middle" font-size="10" fill="#666" font-family="sans-serif">Slack / Email</text>
+      <text x="340" y="150" text-anchor="middle" font-size="10" fill="#444" font-family="sans-serif">Automated IaC Pipeline: PR → Validate → Plan → Approve → Apply → Notify</text>
+    </svg>
+  </div>
+
+  <div class="code">
+<span class="cmt"># GitHub Actions workflow for Terraform</span>
+name: <span class="str">Terraform CI/CD</span>
+<span class="kw">on</span>:
+  push:
+    branches: [main]
+  pull_request:
+
+<span class="kw">jobs</span>:
+  terraform:
+    <span class="kw">runs-on</span>: ubuntu-latest
+    <span class="kw">steps</span>:
+      - <span class="fn">uses</span>: actions/checkout@v4
+      - <span class="fn">uses</span>: hashicorp/setup-terraform@v3
+
+      - <span class="fn">name</span>: Terraform Init
+        <span class="fn">run</span>: terraform init
+
+      - <span class="fn">name</span>: Terraform Plan
+        <span class="fn">run</span>: terraform plan -out=tfplan
+
+      - <span class="fn">name</span>: Terraform Apply <span class="cmt"># only on main</span>
+        <span class="kw">if</span>: github.ref == <span class="str">'refs/heads/main'</span>
+        <span class="fn">run</span>: terraform apply -auto-approve tfplan
+  </div>
+</div>
+
+<!-- 11 - Best Practices -->
+<div class="section" id="s11">
+  <div class="chapter-title">Best Practices</div>
+  <div class="chapter-sub">Chapter 11 · Write Production-Grade Terraform</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:94%"></div></div>
+
+  <div class="step-grid">
+    <div class="step-item">
+      <div class="step-num">①</div>
+      <div class="step-info">
+        <div class="step-title">Structure Your Code</div>
+        <div class="step-desc">Separate files for logic: main.tf (resources), variables.tf (var definitions), outputs.tf (outputs), versions.tf (provider versions), terraform.tfvars (variable values).</div>
+        <div class="step-tamil">Code separate files-ல் வை: main.tf, variables.tf, outputs.tf, versions.tf. ஒரு file-ல் எல்லாம் போட்டால் maintain செய்வது கஷ்டம்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">②</div>
+      <div class="step-info">
+        <div class="step-title">Never Hardcode Secrets</div>
+        <div class="step-desc">Use environment variables, AWS Secrets Manager, Vault, or SSM Parameter Store. Never put passwords/keys in .tf files. Add *.tfvars to .gitignore.</div>
+        <div class="step-tamil">Passwords, API keys — .tf files-ல் hardcode செய்யாதீர்கள். Environment variables, AWS Secrets Manager use செய்யுங்கள். *.tfvars-ஐ .gitignore-ல் வையுங்கள்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">③</div>
+      <div class="step-info">
+        <div class="step-title">Use Remote State Always in Teams</div>
+        <div class="step-desc">Local state in teams = disaster. Always use S3+DynamoDB or Terraform Cloud. Enable versioning on S3 bucket for state recovery.</div>
+        <div class="step-tamil">Team-ல் local state use செய்யாதீர்கள். S3+DynamoDB அல்லது Terraform Cloud mandatory. S3 bucket versioning enable செய்யுங்கள்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">④</div>
+      <div class="step-info">
+        <div class="step-title">Tag Everything</div>
+        <div class="step-desc">Add tags to every resource: Environment, Team, Project, ManagedBy=Terraform, Owner. This helps with cost allocation and troubleshooting.</div>
+        <div class="step-tamil">Every resource-க்கும் tags add செய்யுங்கள். Environment, Team, Cost-center tags மூலம் billing track செய்யலாம், troubleshoot செய்யலாம்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">⑤</div>
+      <div class="step-info">
+        <div class="step-title">Pin Provider Versions</div>
+        <div class="step-desc">Always pin provider versions (~> 5.0 not latest). Breaking changes in providers can destroy your infrastructure if you auto-upgrade.</div>
+        <div class="step-tamil">Provider version pin செய்யுங்கள். "~> 5.0" என்று fix செய்யுங்கள். Latest use செய்தால் breaking changes வந்து infrastructure break ஆகலாம்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">⑥</div>
+      <div class="step-info">
+        <div class="step-title">Run terraform fmt &amp; validate</div>
+        <div class="step-desc">Before committing, always run terraform fmt (format code) and terraform validate (syntax check). Add these to pre-commit hooks and CI pipelines.</div>
+        <div class="step-tamil">Commit-க்கு முன் terraform fmt (formatting) மற்றும் terraform validate (syntax check) run செய்யுங்கள். Pre-commit hooks-ல் add செய்யுங்கள்.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 12 - Master Tips -->
+<div class="section" id="s12">
+  <div class="chapter-title">Master Level Tips</div>
+  <div class="chapter-sub">Chapter 12 · Expert-Level Terraform</div>
+  <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+
+  <div class="card">
+    <div class="card-title">Advanced Concepts</div>
+    <div class="card-body">At master level, you go beyond basic resource management to dynamic configurations, policy enforcement, and custom providers.</div>
+  </div>
+
+  <div class="code">
+<span class="cmt"># Dynamic blocks — avoid repetition</span>
+<span class="kw">resource</span> <span class="str">"aws_security_group"</span> <span class="str">"web"</span> {
+  <span class="kw">dynamic</span> <span class="str">"ingress"</span> {
+    for_each = <span class="fn">var</span>.ingress_rules
+    content {
+      from_port   = ingress.value.port
+      to_port     = ingress.value.port
+      protocol    = <span class="str">"tcp"</span>
+      cidr_blocks = ingress.value.cidrs
+    }
+  }
+}
+
+<span class="cmt"># for_each — create multiple resources</span>
+<span class="kw">resource</span> <span class="str">"aws_s3_bucket"</span> <span class="str">"environments"</span> {
+  for_each = <span class="fn">toset</span>([<span class="str">"dev"</span>, <span class="str">"staging"</span>, <span class="str">"prod"</span>])
+  bucket   = <span class="str">"myapp-${each.key}-bucket"</span>
+}
+
+<span class="cmt"># count — simple repetition</span>
+<span class="kw">resource</span> <span class="str">"aws_instance"</span> <span class="str">"workers"</span> {
+  count         = <span class="num">5</span>  <span class="cmt"># creates 5 EC2 instances</span>
+  instance_type = <span class="str">"t3.micro"</span>
+  tags = { Name = <span class="str">"worker-${count.index}"</span> }
+}
+  </div>
+
+  <div class="code">
+<span class="cmt"># Conditional expressions</span>
+<span class="kw">resource</span> <span class="str">"aws_db_instance"</span> <span class="str">"main"</span> {
+  multi_az          = <span class="fn">terraform</span>.workspace == <span class="str">"prod"</span> ? <span class="num">true</span> : <span class="num">false</span>
+  deletion_protection = <span class="fn">terraform</span>.workspace == <span class="str">"prod"</span> ? <span class="num">true</span> : <span class="num">false</span>
+  backup_retention_period = <span class="fn">terraform</span>.workspace == <span class="str">"prod"</span> ? <span class="num">7</span> : <span class="num">1</span>
+}
+
+<span class="cmt"># Sentinel / OPA — Policy as Code</span>
+<span class="cmt"># Enforce: all S3 buckets must be private</span>
+<span class="cmt"># Enforce: prod instances must be >= t3.medium</span>
+<span class="cmt"># Enforce: all resources must have required tags</span>
+  </div>
+
+  <div class="step-grid">
+    <div class="step-item">
+      <div class="step-num">⚡</div>
+      <div class="step-info">
+        <div class="step-title">Terragrunt</div>
+        <div class="step-desc">Wrapper around Terraform that helps keep configurations DRY across multiple environments. Handles dependencies between Terraform modules automatically.</div>
+        <div class="step-tamil">Terragrunt — Terraform wrapper. Multiple environments-க்கு same config duplicate செய்யாமல், DRY principle follow செய்ய help செய்யும்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">🔒</div>
+      <div class="step-info">
+        <div class="step-title">Policy as Code (OPA / Sentinel)</div>
+        <div class="step-desc">Enforce organizational policies before resources are created. "No public S3 buckets", "Prod must use encrypted disks", "Tags are mandatory" — enforced automatically.</div>
+        <div class="step-tamil">Policy as Code — "public S3 bucket create செய்யக் கூடாது", "prod-ல் encryption mandatory" — இவற்றை automatically enforce செய்யும். Compliance automatically.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">🧪</div>
+      <div class="step-info">
+        <div class="step-title">Terraform Test (v1.6+)</div>
+        <div class="step-desc">Native testing framework for Terraform modules. Write .tftest.hcl files to unit test your modules — assert on outputs, check resource configurations.</div>
+        <div class="step-tamil">Terraform native testing framework. Module-ஐ test செய்யலாம். "VPC-ல் correct CIDR block உள்ளதா?" என்று assert செய்யலாம்.</div>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">📊</div>
+      <div class="step-info">
+        <div class="step-title">Infracost — Cost Estimation</div>
+        <div class="step-desc">Shows cloud cost breakdown before terraform apply. Integrate in CI/CD to see "this PR will increase AWS bill by ₹15,000/month" in PR comments.</div>
+        <div class="step-tamil">Infracost — apply-க்கு முன்னே "இந்த infrastructure-க்கு ₹15,000/month cost ஆகும்" என்று PR comment-ல் காட்டும். Budget control automatic!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="realworld">
+    <div class="realworld-label">Master Level: Full Stack IaC at Scale</div>
+    <div class="realworld-text">
+      🏢 A company like <strong style="color:#aecfae">Razorpay or CRED</strong> uses Terraform to manage: 1000s of AWS resources across 3 regions, 5 environments, 20+ microservices, each with separate state files, managed by 50+ engineers. Master Terraform engineers design the module structure, enforce policies via Sentinel, integrate cost monitoring, and build self-service infrastructure portals on top of Terraform.<br><br>
+      Razorpay போன்ற fintech — 3 AWS regions, 5 environments, 1000+ resources, 50+ engineers — எல்லாமே Terraform manage செய்யும். Master engineer modules design செய்வார், policies enforce செய்வார், cost track செய்வார், self-service portal build செய்வார்.
+    </div>
+  </div>
+
+  <div class="info">
+    🎓 <strong>Your Learning Path:</strong> Basic (Chapters 0-4) → Intermediate (5-8) → Advanced (9-11) → Master (12) · தமிழ்: Basic concept புரிஞ்சதும் hands-on practice செய்யுங்கள். AWS Free Tier + Terraform = Zero cost practice!
+  </div>
+</div>
+
+</div>
+</div>
+
+<script>
+const btns = document.querySelectorAll('.nav-btn');
+const sections = document.querySelectorAll('.section');
+function show(i) {
+  sections.forEach((s,j) => s.classList.toggle('active', j===i));
+  btns.forEach((b,j) => b.classList.toggle('active', j===i));
+  btns[i].scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  document.querySelector('.wrap').scrollTo(0,0);
+}
+</script>
