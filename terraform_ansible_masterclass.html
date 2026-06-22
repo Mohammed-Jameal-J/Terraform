@@ -1,0 +1,844 @@
+
+<h2 class="sr-only">Terraform and Ansible masterclass — interactive multi-chapter reference with English and Tamil definitions, real-world examples, and code samples</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body,html{width:100%;background:transparent}
+.app{font-family:var(--font-sans);color:var(--color-text-primary)}
+
+.hero{background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);padding:20px}
+.hero-eye{font-size:11px;letter-spacing:2px;color:var(--color-text-tertiary);text-transform:uppercase;margin-bottom:6px}
+.hero-title{font-size:22px;font-weight:500;line-height:1.2}
+.hero-sub{font-size:13px;color:var(--color-text-secondary);margin-top:5px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pill{font-size:11px;padding:3px 10px;border:0.5px solid var(--color-border-secondary);border-radius:20px;color:var(--color-text-secondary)}
+.pill.active{border-color:var(--color-border-primary);color:var(--color-text-primary)}
+
+.mobile-nav{overflow-x:auto;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);scrollbar-width:none}
+.mobile-nav::-webkit-scrollbar{display:none}
+.mobile-nav-inner{display:flex;padding:8px 12px;gap:6px;min-width:max-content}
+.mob-btn{flex-shrink:0;padding:6px 12px;font-size:12px;color:var(--color-text-tertiary);cursor:pointer;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);border-radius:var(--border-radius-md);white-space:nowrap;transition:all .15s}
+.mob-btn:hover{color:var(--color-text-primary);border-color:var(--color-border-secondary)}
+.mob-btn.active{color:var(--color-text-primary);border-color:var(--color-border-primary);background:var(--color-background-secondary)}
+
+.layout{display:flex;min-height:0}
+.sidebar{width:210px;flex-shrink:0;border-right:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);overflow-y:auto;position:sticky;top:0;max-height:80vh}
+.sidebar-head{padding:12px 14px 6px;font-size:10px;letter-spacing:2px;color:var(--color-text-tertiary);text-transform:uppercase;border-bottom:0.5px solid var(--color-border-tertiary)}
+.nav-item{display:flex;align-items:center;gap:8px;padding:9px 14px;cursor:pointer;border-left:2px solid transparent;transition:all .15s}
+.nav-item:hover{background:var(--color-background-primary)}
+.nav-item.active{background:var(--color-background-primary);border-left-color:var(--color-text-primary)}
+.nav-num{font-size:10px;font-family:var(--font-mono);color:var(--color-text-tertiary);width:18px;flex-shrink:0}
+.nav-item.active .nav-num{color:var(--color-text-secondary)}
+.nav-label{font-size:12px;color:var(--color-text-tertiary);line-height:1.3;flex:1}
+.nav-item.active .nav-label{color:var(--color-text-primary)}
+.nav-lv{font-size:9px;padding:2px 5px;border-radius:3px;flex-shrink:0}
+.lv-b{background:var(--color-background-success);color:var(--color-text-success)}
+.lv-i{background:var(--color-background-info);color:var(--color-text-info)}
+.lv-a{background:var(--color-background-warning);color:var(--color-text-warning)}
+.lv-m{background:var(--color-background-danger);color:var(--color-text-danger)}
+
+.main{flex:1;padding:24px 24px 48px;overflow-y:auto;min-width:0}
+
+.section{display:none}
+.section.active{display:block}
+
+.ch-eye{font-size:10px;font-family:var(--font-mono);color:var(--color-text-tertiary);letter-spacing:1px;margin-bottom:6px}
+.ch-title{font-size:22px;font-weight:500;margin-bottom:4px}
+.ch-sub{font-size:13px;color:var(--color-text-secondary);margin-bottom:6px}
+.progress{height:2px;background:var(--color-border-tertiary);border-radius:2px;margin-bottom:24px;overflow:hidden}
+.progress-fill{height:100%;background:var(--color-text-secondary);border-radius:2px;transition:width .4s}
+
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px;margin-bottom:14px}
+.card-title{font-size:13px;font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.card-body{font-size:13px;color:var(--color-text-secondary);line-height:1.8}
+.tamil{font-size:12px;color:var(--color-text-tertiary);margin-top:8px;padding-top:8px;border-top:0.5px solid var(--color-border-tertiary);font-style:italic;line-height:1.7}
+
+.code{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--color-text-primary);overflow-x:auto;margin:12px 0;line-height:1.8;-webkit-overflow-scrolling:touch}
+.kw{color:#569cd6}.str{color:#ce9178}.cmt{color:var(--color-text-tertiary)}.fn{color:#dcdcaa}.num{color:#b5cea8}.type{color:#4ec9b0}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.cmp-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px}
+.cmp-title{font-size:10px;letter-spacing:1px;color:var(--color-text-tertiary);text-transform:uppercase;margin-bottom:10px}
+.cmp-row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:12px;color:var(--color-text-secondary)}
+.cmp-row:last-child{border-bottom:none}
+.dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.dot-g{background:#4a9a4a}.dot-r{background:#b04040}.dot-b{background:#3a7aaf}
+
+.steps{display:flex;flex-direction:column;gap:8px}
+.step{display:flex;gap:12px;align-items:flex-start;padding:12px;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md)}
+.step-num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:var(--font-mono);color:var(--color-text-secondary)}
+.step-body{flex:1;min-width:0}
+.step-title{font-size:13px;font-weight:500;margin-bottom:3px}
+.step-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.7}
+.step-tamil{font-size:11px;color:var(--color-text-tertiary);margin-top:4px;font-style:italic;line-height:1.6}
+
+.rw{background:var(--color-background-success);border:0.5px solid var(--color-border-success);border-radius:var(--border-radius-lg);padding:14px;margin:14px 0}
+.rw-label{font-size:9px;letter-spacing:2px;color:var(--color-text-success);text-transform:uppercase;margin-bottom:6px}
+.rw-body{font-size:13px;color:var(--color-text-success);line-height:1.8}
+
+.warn{background:var(--color-background-warning);border:0.5px solid var(--color-border-warning);border-radius:var(--border-radius-md);padding:12px 14px;font-size:12px;color:var(--color-text-warning);margin:12px 0;line-height:1.7}
+.info{background:var(--color-background-info);border:0.5px solid var(--color-border-info);border-radius:var(--border-radius-md);padding:12px 14px;font-size:12px;color:var(--color-text-info);margin:12px 0;line-height:1.7}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.tag{font-size:11px;padding:3px 8px;border-radius:3px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);color:var(--color-text-secondary)}
+
+.tbl{width:100%;font-size:12px;border-collapse:collapse}
+.tbl th{text-align:left;padding:8px;border-bottom:0.5px solid var(--color-border-secondary);color:var(--color-text-tertiary);font-weight:500;font-size:11px}
+.tbl td{padding:8px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);vertical-align:top}
+.tbl td:first-child{color:var(--color-text-primary);font-weight:500}
+
+.diag{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin:14px 0}
+.diag svg{width:100%;height:auto;display:block}
+
+@media(max-width:680px){
+  .sidebar{display:none}
+  .mobile-nav{display:block}
+  .layout{flex-direction:column}
+  .main{padding:16px 14px 40px}
+  .two-col{grid-template-columns:1fr}
+}
+@media(min-width:681px){
+  .mobile-nav{display:none}
+}
+</style>
+
+<div class="app">
+<div class="hero">
+  <div class="hero-eye">Infrastructure as Code · Configuration Management</div>
+  <div class="hero-title">Terraform + Ansible Masterclass</div>
+  <div class="hero-sub">Basic → Master · English & தமிழ் · Real-world examples · Code samples</div>
+  <div class="hero-pills">
+    <span class="pill active">Terraform</span>
+    <span class="pill active">Ansible</span>
+    <span class="pill">AWS</span>
+    <span class="pill">IaC</span>
+    <span class="pill">Config Mgmt</span>
+  </div>
+</div>
+
+<div class="mobile-nav"><div class="mobile-nav-inner" id="mobNav"></div></div>
+
+<div class="layout">
+<div class="sidebar" id="sidebar"><div class="sidebar-head">Chapters</div></div>
+
+<div class="main" id="mainContent">
+
+<!-- ═══════════════ TERRAFORM CHAPTERS ═══════════════ -->
+
+<!-- 00 -->
+<div class="section active" id="s0">
+  <div class="ch-eye">Chapter 00 · Beginner</div>
+  <div class="ch-title">What is Terraform?</div>
+  <div class="ch-sub">Definition, purpose, the big picture</div>
+  <div class="progress"><div class="progress-fill" style="width:7%"></div></div>
+  <div class="card">
+    <div class="card-title"><i class="ti ti-book" aria-hidden="true"></i> Definition — English</div>
+    <div class="card-body">Terraform is an open-source <strong>Infrastructure as Code (IaC)</strong> tool by HashiCorp. You write code (HCL) describing the cloud infrastructure you want — servers, databases, networks — and Terraform builds it. No manual clicking in the AWS console ever again.</div>
+    <div class="tamil">Terraform என்பது HashiCorp-இன் open-source கருவி. Cloud-ல் servers, databases, networks — எல்லாவற்றையும் code எழுதி create செய்யலாம். AWS console-ல் manually click செய்யத் தேவையில்லை.</div>
+  </div>
+  <div class="rw">
+    <div class="rw-label">Real-world analogy</div>
+    <div class="rw-body"><strong>Blueprint for a house:</strong> Instead of telling the contractor step-by-step each time, you write a blueprint once and reuse it. Terraform is that blueprint for cloud infrastructure — write once, deploy 100 times across AWS, Azure, GCP.</div>
+  </div>
+  <div class="card">
+    <div class="card-title"><i class="ti ti-key" aria-hidden="true"></i> Key terms</div>
+    <div class="tag-row">
+      <span class="tag">IaC — Infrastructure as Code</span>
+      <span class="tag">HCL — HashiCorp Config Language</span>
+      <span class="tag">Declarative — describe end state</span>
+      <span class="tag">Idempotent — same result every run</span>
+    </div>
+    <div class="card-body" style="margin-top:10px">
+      <strong>Declarative vs imperative:</strong> Bash = tell every step (imperative). Terraform = say "I want this to exist" and it figures out the steps (declarative).
+    </div>
+    <div class="tamil">Declarative vs Imperative: Bash-ல் step-by-step சொல்வது imperative. Terraform-ல் "இந்த infrastructure வேண்டும்" என்று சொல்வது declarative.</div>
+  </div>
+</div>
+
+<!-- 01 -->
+<div class="section" id="s1">
+  <div class="ch-eye">Chapter 01 · Beginner</div>
+  <div class="ch-title">Why Terraform?</div>
+  <div class="ch-sub">The problem with manual infra and the IaC solution</div>
+  <div class="progress"><div class="progress-fill" style="width:14%"></div></div>
+  <div class="two-col">
+    <div class="cmp-card">
+      <div class="cmp-title" style="color:var(--color-text-danger)">Without Terraform</div>
+      <div class="cmp-row"><div class="dot dot-r"></div>Manual clicking in console</div>
+      <div class="cmp-row"><div class="dot dot-r"></div>Hard to reproduce environments</div>
+      <div class="cmp-row"><div class="dot dot-r"></div>No version history or audit</div>
+      <div class="cmp-row"><div class="dot dot-r"></div>Different tools per cloud</div>
+      <div class="cmp-row"><div class="dot dot-r"></div>Scaling = more manual work</div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-title" style="color:var(--color-text-success)">With Terraform</div>
+      <div class="cmp-row"><div class="dot dot-g"></div>Write once, deploy anywhere</div>
+      <div class="cmp-row"><div class="dot dot-g"></div>100% reproducible environments</div>
+      <div class="cmp-row"><div class="dot dot-g"></div>Full Git history — who changed what</div>
+      <div class="cmp-row"><div class="dot dot-g"></div>One tool for AWS + Azure + GCP</div>
+      <div class="cmp-row"><div class="dot dot-g"></div>Automate scaling in minutes</div>
+    </div>
+  </div>
+  <div class="rw">
+    <div class="rw-label">Flipkart Big Billion Days</div>
+    <div class="rw-body">Traffic spikes 100x. Without Terraform: 2 days of manual work provisioning 500 servers. With Terraform: change one number, run <code style="font-family:var(--font-mono);font-size:11px">terraform apply</code> — 500 servers in 5 minutes.<br><br><strong>Flipkart (தமிழ்):</strong> Traffic 100x spike. Terraform இல்லாமல் 2 நாள் manual work. Terraform-உடன் ஒரு number மாற்றி apply — 5 minutes-ல் ready!</div>
+  </div>
+</div>
+
+<!-- 02 -->
+<div class="section" id="s2">
+  <div class="ch-eye">Chapter 02 · Beginner</div>
+  <div class="ch-title">Terraform Architecture</div>
+  <div class="ch-sub">Core, State, Providers — how it works internally</div>
+  <div class="progress"><div class="progress-fill" style="width:21%"></div></div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Terraform Core</div><div class="step-desc">The brain. Reads .tf config files, compares desired state vs current state, builds a dependency graph, orchestrates the apply process in correct order.</div><div class="step-tamil">Core = Terraform-இன் brain. Config files படிக்கும், plan செய்யும், dependency graph build செய்யும்.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">State file (terraform.tfstate)</div><div class="step-desc">Terraform's memory. A JSON file mapping your code to real-world resources. Tracks every resource ID, attribute, and metadata. Next apply compares this to detect changes.</div><div class="step-tamil">State file = Terraform-இன் நினைவாற்றல். "AWS-ல் i-0abc123 instance create செய்தோம்" — இங்கே track ஆகும்.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Provider plugins</div><div class="step-desc">Adapters that talk to each cloud API. AWS provider → AWS API. 3000+ providers: GitHub, Datadog, Cloudflare, Kubernetes, MongoDB — manage everything as code.</div><div class="step-tamil">Provider = cloud API-ஓடு பேசும் translator. AWS, Azure, GCP மட்டுமல்ல — GitHub, Datadog, K8s — எல்லாவற்றிற்கும் providers உள்ளன.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Configuration files (.tf)</div><div class="step-desc">Your infrastructure blueprint in HCL. Contains resources, variables, outputs, data sources. Terraform reads these to know what to create.</div><div class="step-tamil">HCL language-ல் எழுதப்படும் blueprint files. Resources, variables, outputs — எல்லாமே இங்கே.</div></div></div>
+  </div>
+</div>
+
+<!-- 03 -->
+<div class="section" id="s3">
+  <div class="ch-eye">Chapter 03 · Beginner</div>
+  <div class="ch-title">Core Lifecycle</div>
+  <div class="ch-sub">init → plan → apply → destroy</div>
+  <div class="progress"><div class="progress-fill" style="width:28%"></div></div>
+  <div class="steps">
+    <div class="step"><div class="step-num">①</div><div class="step-body"><div class="step-title">terraform init</div><div class="step-desc">Downloads providers, sets up backend, prepares working directory. Always the first command in any project. Safe to run multiple times.</div><div class="step-tamil">Providers download, backend setup. புதிய project-ல் முதல் command.</div></div></div>
+    <div class="step"><div class="step-num">②</div><div class="step-body"><div class="step-title">terraform plan</div><div class="step-desc">Dry run. Shows what will be created (+), modified (~), or destroyed (-). Never applies anything. Always run before apply to review changes.</div><div class="step-tamil">Preview மட்டும். Actually எதுவும் create/destroy ஆகாது. Apply-க்கு முன் எப்போதும் plan run செய்யுங்கள்.</div></div></div>
+    <div class="step"><div class="step-num">③</div><div class="step-body"><div class="step-title">terraform apply</div><div class="step-desc">Executes the plan. Creates/modifies/destroys infrastructure. Asks confirmation. Updates state file. Use -auto-approve in CI/CD.</div><div class="step-tamil">Actual-ஆக infrastructure create/change/delete. "yes" type செய்தால் proceed. State file update ஆகும்.</div></div></div>
+    <div class="step"><div class="step-num">④</div><div class="step-body"><div class="step-title">terraform destroy</div><div class="step-desc">Removes all Terraform-managed resources. Useful for dev/test to save costs. Be very careful in production!</div><div class="step-tamil">எல்லாவற்றையும் delete செய்யும். Dev/test-ல் cost save-க்கு useful. Production-ல் மிகவும் கவனமாக!</div></div></div>
+  </div>
+</div>
+
+<!-- 04 -->
+<div class="section" id="s4">
+  <div class="ch-eye">Chapter 04 · Intermediate</div>
+  <div class="ch-title">HCL Language</div>
+  <div class="ch-sub">Syntax, variables, resources, outputs, data sources</div>
+  <div class="progress"><div class="progress-fill" style="width:35%"></div></div>
+  <div class="code"><span class="cmt"># Provider</span>
+<span class="kw">terraform</span> {
+  required_providers {
+    <span class="fn">aws</span> = { source = <span class="str">"hashicorp/aws"</span>, version = <span class="str">"~> 5.0"</span> }
+  }
+}
+<span class="kw">provider</span> <span class="str">"aws"</span> { region = <span class="str">"ap-south-1"</span> }
+
+<span class="cmt"># Variable</span>
+<span class="kw">variable</span> <span class="str">"instance_type"</span> {
+  type    = <span class="type">string</span>
+  default = <span class="str">"t3.micro"</span>
+}
+
+<span class="cmt"># Resource</span>
+<span class="kw">resource</span> <span class="str">"aws_instance"</span> <span class="str">"web"</span> {
+  ami           = <span class="fn">data</span>.aws_ami.latest.id
+  instance_type = <span class="fn">var</span>.instance_type
+  tags = { Name = <span class="str">"web-${var.environment}"</span>, ManagedBy = <span class="str">"Terraform"</span> }
+}
+
+<span class="cmt"># Output</span>
+<span class="kw">output</span> <span class="str">"server_ip"</span> {
+  value = <span class="fn">aws_instance</span>.web.public_ip
+}</span></div>
+  <div class="card">
+    <div class="card-title">HCL explained</div>
+    <div class="card-body">HCL is human-readable, JSON-compatible, supports comments, functions, loops, and conditions. Think of it as JSON with superpowers — designed for humans to write and machines to parse.</div>
+    <div class="tamil">HCL = Human-readable config language. JSON போல், ஆனால் comments, loops, conditions support. மனிதர்கள் எளிதாக படிக்கலாம்.</div>
+  </div>
+</div>
+
+<!-- 05 -->
+<div class="section" id="s5">
+  <div class="ch-eye">Chapter 05 · Intermediate</div>
+  <div class="ch-title">State Management</div>
+  <div class="ch-sub">terraform.tfstate — Terraform's memory</div>
+  <div class="progress"><div class="progress-fill" style="width:42%"></div></div>
+  <div class="two-col">
+    <div class="cmp-card">
+      <div class="cmp-title" style="color:var(--color-text-danger)">Local state — bad for teams</div>
+      <div class="cmp-row"><div class="dot dot-r"></div>Only on your laptop</div>
+      <div class="cmp-row"><div class="dot dot-r"></div>Team can't share it</div>
+      <div class="cmp-row"><div class="dot dot-r"></div>No locking — 2 people apply = disaster</div>
+      <div class="cmp-row"><div class="dot dot-r"></div>Lost if disk fails</div>
+    </div>
+    <div class="cmp-card">
+      <div class="cmp-title" style="color:var(--color-text-success)">Remote state — team-ready</div>
+      <div class="cmp-row"><div class="dot dot-g"></div>Stored in S3 / GCS / Blob</div>
+      <div class="cmp-row"><div class="dot dot-g"></div>Whole team shares one state</div>
+      <div class="cmp-row"><div class="dot dot-g"></div>DynamoDB locking — no conflicts</div>
+      <div class="cmp-row"><div class="dot dot-g"></div>Versioned and backed up</div>
+    </div>
+  </div>
+  <div class="code"><span class="cmt"># S3 remote backend with DynamoDB locking</span>
+<span class="kw">terraform</span> {
+  backend <span class="str">"s3"</span> {
+    bucket         = <span class="str">"my-terraform-state"</span>
+    key            = <span class="str">"prod/terraform.tfstate"</span>
+    region         = <span class="str">"ap-south-1"</span>
+    encrypt        = <span class="num">true</span>
+    dynamodb_table = <span class="str">"terraform-state-lock"</span>
+  }
+}</div>
+  <div class="warn"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Never manually edit terraform.tfstate! Corrupt state = Terraform loses track of all infrastructure. Always use <code style="font-family:var(--font-mono)">terraform state</code> commands.<br><span style="font-style:italic;opacity:.8">terraform.tfstate-ஐ manually edit செய்யாதீர்கள் — state corrupt ஆனால் infrastructure track இழக்கப்படும்.</span></div>
+</div>
+
+<!-- 06 -->
+<div class="section" id="s6">
+  <div class="ch-eye">Chapter 06 · Intermediate</div>
+  <div class="ch-title">Modules</div>
+  <div class="ch-sub">Reusable infrastructure components — DRY principle</div>
+  <div class="progress"><div class="progress-fill" style="width:49%"></div></div>
+  <div class="card">
+    <div class="card-title">What is a module?</div>
+    <div class="card-body">A module is a container for multiple resources — like a function in programming. Write once, call many times with different parameters. Enables DRY infrastructure code.</div>
+    <div class="tamil">Module = programming-ல் function போல். ஒரு module-ல் பல resources define செய்யலாம். பலமுறை different parameters-உடன் call செய்யலாம்.</div>
+  </div>
+  <div class="code"><span class="cmt"># Calling a module from the Terraform Registry</span>
+<span class="kw">module</span> <span class="str">"vpc"</span> {
+  source  = <span class="str">"terraform-aws-modules/vpc/aws"</span>
+  version = <span class="str">"~> 5.0"</span>
+  name    = <span class="str">"my-vpc-${var.environment}"</span>
+  cidr    = <span class="str">"10.0.0.0/16"</span>
+  azs             = [<span class="str">"ap-south-1a"</span>, <span class="str">"ap-south-1b"</span>]
+  private_subnets = [<span class="str">"10.0.1.0/24"</span>, <span class="str">"10.0.2.0/24"</span>]
+  public_subnets  = [<span class="str">"10.0.101.0/24"</span>, <span class="str">"10.0.102.0/24"</span>]
+  enable_nat_gateway = <span class="num">true</span>
+}
+
+<span class="cmt"># Reference module output in another resource</span>
+<span class="kw">resource</span> <span class="str">"aws_instance"</span> <span class="str">"app"</span> {
+  subnet_id = <span class="fn">module</span>.vpc.private_subnets[<span class="num">0</span>]
+}</div>
+</div>
+
+<!-- 07 -->
+<div class="section" id="s7">
+  <div class="ch-eye">Chapter 07 · Advanced</div>
+  <div class="ch-title">Workspaces & Best Practices</div>
+  <div class="ch-sub">Multiple environments, remote backends, production-grade code</div>
+  <div class="progress"><div class="progress-fill" style="width:56%"></div></div>
+  <div class="code"><span class="cmt"># Workspaces — same code, different environments</span>
+$ terraform workspace new dev
+$ terraform workspace new prod
+$ terraform workspace select prod
+
+<span class="cmt"># Use workspace in resources</span>
+<span class="kw">locals</span> {
+  sizes = { dev = <span class="str">"t3.micro"</span>, prod = <span class="str">"t3.xlarge"</span> }
+}
+<span class="kw">resource</span> <span class="str">"aws_instance"</span> <span class="str">"app"</span> {
+  instance_type = <span class="fn">local</span>.sizes[terraform.workspace]
+}</div>
+  <div class="steps">
+    <div class="step"><div class="step-num"><i class="ti ti-check" aria-hidden="true"></i></div><div class="step-body"><div class="step-title">Structure files properly</div><div class="step-desc">main.tf (resources) · variables.tf (var definitions) · outputs.tf · versions.tf (provider pins) · terraform.tfvars (values)</div></div></div>
+    <div class="step"><div class="step-num"><i class="ti ti-check" aria-hidden="true"></i></div><div class="step-body"><div class="step-title">Never hardcode secrets</div><div class="step-desc">Use AWS Secrets Manager, HashiCorp Vault, or environment variables. Add *.tfvars to .gitignore.</div></div></div>
+    <div class="step"><div class="step-num"><i class="ti ti-check" aria-hidden="true"></i></div><div class="step-body"><div class="step-title">Tag every resource</div><div class="step-desc">Environment, Team, Project, ManagedBy=Terraform, CostCenter. Required for billing and troubleshooting.</div></div></div>
+    <div class="step"><div class="step-num"><i class="ti ti-check" aria-hidden="true"></i></div><div class="step-body"><div class="step-title">Run fmt + validate before commit</div><div class="step-desc">terraform fmt (auto-format) and terraform validate (syntax check). Add as pre-commit hooks.</div></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ ANSIBLE DIVIDER ═══════════════ -->
+
+<!-- 08 — What is Ansible -->
+<div class="section" id="s8">
+  <div class="ch-eye">Chapter 08 · Beginner · Ansible</div>
+  <div class="ch-title">What is Ansible?</div>
+  <div class="ch-sub">Agentless configuration management — automate what's inside your servers</div>
+  <div class="progress"><div class="progress-fill" style="width:63%"></div></div>
+
+  <div class="card">
+    <div class="card-title"><i class="ti ti-book" aria-hidden="true"></i> Definition — English</div>
+    <div class="card-body">Ansible is an open-source <strong>configuration management</strong> and <strong>automation tool</strong> by Red Hat. It connects to servers over SSH and runs tasks — install software, configure files, start services — without installing any agent on the target machine. You write <strong>Playbooks</strong> (YAML files) describing what the server should look like.</div>
+    <div class="tamil">Ansible என்பது Red Hat-இன் open-source configuration management கருவி. Servers-க்கு SSH மூலம் connect ஆகி — software install, files configure, services start — எல்லாமே automatically செய்யும். Target machine-ல் எந்த agent-உம் install செய்ய தேவையில்லை. Playbook என்ற YAML files-ல் "server எப்படி இருக்க வேண்டும்" என்று எழுதுவோம்.</div>
+  </div>
+
+  <div class="rw">
+    <div class="rw-label">Real-world analogy — நிஜ உலக உதாரணம்</div>
+    <div class="rw-body"><strong>Chef in a restaurant:</strong> Terraform builds the kitchen (walls, stoves, sinks — infrastructure). Ansible is the recipe the chef follows inside that kitchen — install the right software, configure the right settings, ensure the right services are running.<br><br><strong>சமையலகார உதாரணம்:</strong> Terraform = கிச்சன் கட்டும் (infrastructure). Ansible = அந்த கிச்சனில் என்ன செய்ய வேண்டும் என்ற recipe (software install, config). இரண்டும் வேறு வேறு கட்டங்களில் செய்யும் — together ஒரு complete setup.</div>
+  </div>
+
+  <div class="diag">
+    <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect x="20" y="60" width="120" height="60" rx="6" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+      <text x="80" y="85" text-anchor="middle" font-size="12" fill="#085041" font-family="sans-serif" font-weight="500">Terraform</text>
+      <text x="80" y="102" text-anchor="middle" font-size="10" fill="#0F6E56" font-family="sans-serif">Creates infra</text>
+      <text x="80" y="116" text-anchor="middle" font-size="10" fill="#0F6E56" font-family="sans-serif">EC2 · VPC · RDS</text>
+      <line x1="141" y1="90" x2="175" y2="90" stroke="#888" stroke-width="0.5" marker-end="url(#ar)"/>
+      <rect x="176" y="55" width="130" height="70" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+      <text x="241" y="80" text-anchor="middle" font-size="12" fill="#26215C" font-family="sans-serif" font-weight="500">Ansible</text>
+      <text x="241" y="97" text-anchor="middle" font-size="10" fill="#3C3489" font-family="sans-serif">Configures servers</text>
+      <text x="241" y="111" text-anchor="middle" font-size="10" fill="#3C3489" font-family="sans-serif">Installs software</text>
+      <text x="241" y="125" text-anchor="middle" font-size="10" fill="#3C3489" font-family="sans-serif">Runs via SSH</text>
+      <line x1="307" y1="75" x2="345" y2="58" stroke="#888" stroke-width="0.5" marker-end="url(#ar)"/>
+      <line x1="307" y1="90" x2="345" y2="90" stroke="#888" stroke-width="0.5" marker-end="url(#ar)"/>
+      <line x1="307" y1="105" x2="345" y2="120" stroke="#888" stroke-width="0.5" marker-end="url(#ar)"/>
+      <rect x="346" y="34" width="100" height="42" rx="4" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+      <text x="396" y="53" text-anchor="middle" font-size="11" fill="#412402" font-family="sans-serif" font-weight="500">Web Server</text>
+      <text x="396" y="68" text-anchor="middle" font-size="10" fill="#633806" font-family="sans-serif">Nginx installed</text>
+      <rect x="346" y="72" width="100" height="42" rx="4" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+      <text x="396" y="90" text-anchor="middle" font-size="11" fill="#412402" font-family="sans-serif" font-weight="500">App Server</text>
+      <text x="396" y="106" text-anchor="middle" font-size="10" fill="#633806" font-family="sans-serif">Node.js configured</text>
+      <rect x="346" y="110" width="100" height="42" rx="4" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+      <text x="396" y="129" text-anchor="middle" font-size="11" fill="#412402" font-family="sans-serif" font-weight="500">DB Server</text>
+      <text x="396" y="144" text-anchor="middle" font-size="10" fill="#633806" font-family="sans-serif">MySQL configured</text>
+      <line x1="447" y1="55" x2="490" y2="90" stroke="#888" stroke-width="0.5" marker-end="url(#ar)"/>
+      <line x1="447" y1="93" x2="490" y2="93" stroke="#888" stroke-width="0.5" marker-end="url(#ar)"/>
+      <line x1="447" y1="131" x2="490" y2="96" stroke="#888" stroke-width="0.5" marker-end="url(#ar)"/>
+      <rect x="491" y="63" width="130" height="60" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+      <text x="556" y="88" text-anchor="middle" font-size="12" fill="#173404" font-family="sans-serif" font-weight="500">Production ready!</text>
+      <text x="556" y="106" text-anchor="middle" font-size="10" fill="#27500A" font-family="sans-serif">Infra + config = done</text>
+      <text x="320" y="178" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">Terraform creates the servers → Ansible configures what runs inside them</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Terraform vs Ansible — key difference</div>
+    <div class="card-body">
+      <table class="tbl">
+        <tr><th>Aspect</th><th>Terraform</th><th>Ansible</th></tr>
+        <tr><td>What it does</td><td>Creates infra (servers, VPCs, DBs)</td><td>Configures what's inside servers</td></tr>
+        <tr><td>Language</td><td>HCL (declarative)</td><td>YAML Playbooks (procedural)</td></tr>
+        <tr><td>Agent needed?</td><td>No — uses cloud APIs</td><td>No — uses SSH</td></tr>
+        <tr><td>Strength</td><td>Cloud provisioning</td><td>Server configuration</td></tr>
+        <tr><td>Use together?</td><td colspan="2" style="color:var(--color-text-success);font-weight:500">Yes! Terraform creates, Ansible configures</td></tr>
+      </table>
+    </div>
+    <div class="tamil">Terraform = cloud-ல் infrastructure create செய்யும். Ansible = அந்த infrastructure-க்குள் என்ன இருக்க வேண்டும் என்று configure செய்யும். இரண்டும் different roles — together use செய்தால் complete automation.</div>
+  </div>
+</div>
+
+<!-- 09 — Ansible Architecture -->
+<div class="section" id="s9">
+  <div class="ch-eye">Chapter 09 · Beginner · Ansible</div>
+  <div class="ch-title">Ansible Architecture</div>
+  <div class="ch-sub">Control node, managed nodes, inventory, playbooks, modules</div>
+  <div class="progress"><div class="progress-fill" style="width:70%"></div></div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Control node</div>
+        <div class="step-desc">The machine where Ansible is installed and run from. Your laptop, a bastion host, or a CI/CD server. Ansible only needs to be installed here — not on the target servers.</div>
+        <div class="step-tamil">Control node = Ansible install செய்யப்பட்ட machine. உங்கள் laptop அல்லது CI/CD server. Target servers-ல் எந்த software-உம் install தேவையில்லை.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Managed nodes (inventory)</div>
+        <div class="step-desc">The target servers Ansible configures. Listed in an inventory file (hosts). Can be grouped: [web], [db], [app]. Ansible connects to them over SSH automatically.</div>
+        <div class="step-tamil">Managed nodes = Ansible configure செய்யும் target servers. Inventory file-ல் IP addresses list செய்யப்படும். Groups-ஆக organize செய்யலாம்: [web], [db], [app].</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Playbook</div>
+        <div class="step-desc">A YAML file describing what to do on which servers. Contains one or more plays. Each play targets a group of hosts and runs a list of tasks in order.</div>
+        <div class="step-tamil">Playbook = YAML file. "எந்த servers-ல், என்ன செய்ய வேண்டும்" என்று describe செய்யும். Plays மற்றும் tasks-ஆல் composed.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Modules</div>
+        <div class="step-desc">Built-in tools Ansible uses to perform tasks. apt (install packages), copy (copy files), service (start/stop services), template (render Jinja2 templates), shell (run commands). 3000+ modules available.</div>
+        <div class="step-tamil">Modules = Ansible-இன் built-in tools. apt (packages install), copy (files copy), service (services manage), template (config files render). 3000+ modules ready-made.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title">Roles</div>
+        <div class="step-desc">A structured way to organise playbooks into reusable units — like Terraform modules. A "nginx" role contains tasks, templates, handlers, and variables all related to Nginx setup.</div>
+        <div class="step-tamil">Role = Terraform module போல். Reusable playbook structure. "nginx role" = nginx-க்கு தேவையான எல்லா tasks, templates, variables ஒரு folder-ல் organized.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="diag">
+    <svg viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect x="20" y="55" width="130" height="60" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+      <text x="85" y="78" text-anchor="middle" font-size="12" fill="#26215C" font-family="sans-serif" font-weight="500">Control Node</text>
+      <text x="85" y="94" text-anchor="middle" font-size="10" fill="#3C3489" font-family="sans-serif">Ansible installed</text>
+      <text x="85" y="108" text-anchor="middle" font-size="10" fill="#3C3489" font-family="sans-serif">Runs playbooks</text>
+      <text x="85" y="140" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">Your laptop / CI server</text>
+      <line x1="151" y1="85" x2="185" y2="60" stroke="#888" stroke-width="0.5" stroke-dasharray="4,3" marker-end="url(#ar2)"/>
+      <line x1="151" y1="85" x2="185" y2="85" stroke="#888" stroke-width="0.5" stroke-dasharray="4,3" marker-end="url(#ar2)"/>
+      <line x1="151" y1="85" x2="185" y2="110" stroke="#888" stroke-width="0.5" stroke-dasharray="4,3" marker-end="url(#ar2)"/>
+      <text x="168" y="42" text-anchor="middle" font-size="9" fill="#888" font-family="sans-serif">SSH</text>
+      <rect x="186" y="30" width="110" height="44" rx="4" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+      <text x="241" y="50" text-anchor="middle" font-size="11" fill="#412402" font-family="sans-serif" font-weight="500">Web servers</text>
+      <text x="241" y="66" text-anchor="middle" font-size="10" fill="#633806" font-family="sans-serif">[web] group</text>
+      <rect x="186" y="63" width="110" height="44" rx="4" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+      <text x="241" y="83" text-anchor="middle" font-size="11" fill="#412402" font-family="sans-serif" font-weight="500">App servers</text>
+      <text x="241" y="99" text-anchor="middle" font-size="10" fill="#633806" font-family="sans-serif">[app] group</text>
+      <rect x="186" y="96" width="110" height="44" rx="4" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/>
+      <text x="241" y="116" text-anchor="middle" font-size="11" fill="#412402" font-family="sans-serif" font-weight="500">DB servers</text>
+      <text x="241" y="132" text-anchor="middle" font-size="10" fill="#633806" font-family="sans-serif">[db] group</text>
+      <rect x="330" y="35" width="115" height="100" rx="6" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+      <text x="387" y="60" text-anchor="middle" font-size="11" fill="#04342C" font-family="sans-serif" font-weight="500">Playbook</text>
+      <text x="387" y="78" text-anchor="middle" font-size="10" fill="#085041" font-family="sans-serif">install nginx</text>
+      <text x="387" y="94" text-anchor="middle" font-size="10" fill="#085041" font-family="sans-serif">copy config</text>
+      <text x="387" y="110" text-anchor="middle" font-size="10" fill="#085041" font-family="sans-serif">start service</text>
+      <text x="387" y="126" text-anchor="middle" font-size="10" fill="#085041" font-family="sans-serif">open port 80</text>
+      <line x1="297" y1="80" x2="328" y2="80" stroke="#888" stroke-width="0.5" marker-end="url(#ar2)"/>
+      <rect x="475" y="55" width="140" height="60" rx="6" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+      <text x="545" y="80" text-anchor="middle" font-size="12" fill="#173404" font-family="sans-serif" font-weight="500">Configured servers</text>
+      <text x="545" y="97" text-anchor="middle" font-size="10" fill="#27500A" font-family="sans-serif">Nginx running</text>
+      <text x="545" y="111" text-anchor="middle" font-size="10" fill="#27500A" font-family="sans-serif">App deployed</text>
+      <line x1="446" y1="85" x2="473" y2="85" stroke="#888" stroke-width="0.5" marker-end="url(#ar2)"/>
+      <text x="320" y="152" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">Control node runs playbook via SSH → managed nodes get configured → production ready</text>
+    </svg>
+  </div>
+</div>
+
+<!-- 10 — Playbooks & YAML -->
+<div class="section" id="s10">
+  <div class="ch-eye">Chapter 10 · Intermediate · Ansible</div>
+  <div class="ch-title">Playbooks & YAML Syntax</div>
+  <div class="ch-sub">Writing your first playbook — tasks, handlers, variables, templates</div>
+  <div class="progress"><div class="progress-fill" style="width:77%"></div></div>
+
+  <div class="card">
+    <div class="card-title">Playbook structure</div>
+    <div class="card-body">A playbook is a YAML file with one or more plays. Each play specifies hosts and a list of tasks. Tasks use modules. Handlers run only when notified (e.g., restart Nginx only if config changed).</div>
+    <div class="tamil">Playbook = YAML file. ஒரு playbook-ல் பல plays இருக்கலாம். ஒவ்வொரு play-லும் hosts மற்றும் tasks list. Handlers = config change ஆனால் மட்டும் service restart செய்யும்.</div>
+  </div>
+
+  <div class="code"><span class="cmt"># inventory.ini — list your servers</span>
+[web]
+192.168.1.10
+192.168.1.11
+
+[db]
+192.168.1.20
+
+[all:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/id_rsa</div>
+
+  <div class="code"><span class="cmt"># site.yml — basic playbook</span>
+<span class="kw">---</span>
+- <span class="fn">name</span>: Configure web servers
+  <span class="fn">hosts</span>: web
+  <span class="fn">become</span>: <span class="num">true</span>   <span class="cmt"># sudo</span>
+
+  <span class="fn">vars</span>:
+    nginx_port: <span class="num">80</span>
+    app_name: <span class="str">"shopDesi"</span>
+
+  <span class="fn">tasks</span>:
+    - <span class="fn">name</span>: Install Nginx
+      <span class="fn">ansible.builtin.apt</span>:
+        name: nginx
+        state: present
+        update_cache: <span class="num">true</span>
+
+    - <span class="fn">name</span>: Copy Nginx config
+      <span class="fn">ansible.builtin.template</span>:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+      <span class="fn">notify</span>: Restart Nginx   <span class="cmt"># handler triggered</span>
+
+    - <span class="fn">name</span>: Ensure Nginx is running
+      <span class="fn">ansible.builtin.service</span>:
+        name: nginx
+        state: started
+        enabled: <span class="num">true</span>
+
+  <span class="fn">handlers</span>:
+    - <span class="fn">name</span>: Restart Nginx
+      <span class="fn">ansible.builtin.service</span>:
+        name: nginx
+        state: restarted</div>
+
+  <div class="code"><span class="cmt"># Run the playbook</span>
+$ ansible-playbook -i inventory.ini site.yml
+
+<span class="cmt"># Dry run — check what will change</span>
+$ ansible-playbook -i inventory.ini site.yml --check
+
+<span class="cmt"># Run on specific group only</span>
+$ ansible-playbook -i inventory.ini site.yml --limit web
+
+<span class="cmt"># Run specific tag</span>
+$ ansible-playbook -i inventory.ini site.yml --tags nginx</div>
+
+  <div class="rw">
+    <div class="rw-label">Real-world: Swiggy server config</div>
+    <div class="rw-body">Swiggy has 200 web servers. After Terraform creates them, Ansible runs one playbook: install Node.js, copy the app config, set environment variables, start the app service, enable log rotation. All 200 servers configured identically in under 10 minutes.<br><br><strong>Swiggy (தமிழ்):</strong> 200 web servers-க்கு Ansible ஒரே playbook run செய்யும். Node.js install, config copy, service start — 10 minutes-ல் எல்லா servers ready. Manual work zero!</div>
+  </div>
+</div>
+
+<!-- 11 — Roles & Galaxy -->
+<div class="section" id="s11">
+  <div class="ch-eye">Chapter 11 · Intermediate · Ansible</div>
+  <div class="ch-title">Roles & Ansible Galaxy</div>
+  <div class="ch-sub">Reusable role structure — like Terraform modules for config</div>
+  <div class="progress"><div class="progress-fill" style="width:84%"></div></div>
+
+  <div class="card">
+    <div class="card-title">Role directory structure</div>
+    <div class="card-body">Roles organise related tasks, variables, templates, and handlers into a standard folder structure. Install community roles from Ansible Galaxy (like the Terraform Registry for Ansible).</div>
+    <div class="tamil">Role = Terraform module போல் reusable. Standard folder structure-ல் tasks, variables, templates organize செய்யப்படும். Ansible Galaxy-ல் community-built roles free-ஆக available.</div>
+  </div>
+
+  <div class="code"><span class="cmt"># Role folder structure</span>
+roles/
+  nginx/
+    tasks/
+      main.yml      <span class="cmt"># main task list</span>
+    handlers/
+      main.yml      <span class="cmt"># restart handlers</span>
+    templates/
+      nginx.conf.j2 <span class="cmt"># Jinja2 config template</span>
+    vars/
+      main.yml      <span class="cmt"># role variables</span>
+    defaults/
+      main.yml      <span class="cmt"># default values (overridable)</span>
+    meta/
+      main.yml      <span class="cmt"># role metadata + dependencies</span></div>
+
+  <div class="code"><span class="cmt"># Using roles in a playbook</span>
+<span class="kw">---</span>
+- <span class="fn">name</span>: Setup all servers
+  <span class="fn">hosts</span>: all
+  <span class="fn">become</span>: <span class="num">true</span>
+  <span class="fn">roles</span>:
+    - common        <span class="cmt"># base config for all servers</span>
+    - nginx         <span class="cmt"># web server</span>
+    - nodejs        <span class="cmt"># app runtime</span>
+    - monitoring    <span class="cmt"># Prometheus node exporter</span>
+
+<span class="cmt"># Install from Ansible Galaxy</span>
+$ ansible-galaxy install geerlingguy.nginx
+$ ansible-galaxy install geerlingguy.nodejs
+
+<span class="cmt"># Or use requirements.yml</span>
+<span class="kw">---</span>
+roles:
+  - name: geerlingguy.nginx
+    version: <span class="str">"3.2.0"</span></div>
+
+  <div class="info"><i class="ti ti-bulb" aria-hidden="true"></i> Ansible Galaxy has 10,000+ community roles — pre-built playbooks for Nginx, MySQL, Docker, Java, Python, Redis, and more. Use them instead of writing from scratch, exactly like Terraform Registry modules.<br><span style="font-style:italic;opacity:.8">Ansible Galaxy-ல் 10,000+ community roles. Terraform Registry போல் — already written roles use செய்யுங்கள். Time save ஆகும்!</span></div>
+</div>
+
+<!-- 12 — Terraform + Ansible Together -->
+<div class="section" id="s12">
+  <div class="ch-eye">Chapter 12 · Advanced · Ansible</div>
+  <div class="ch-title">Terraform + Ansible Together</div>
+  <div class="ch-sub">The complete automation combo — provision then configure</div>
+  <div class="progress"><div class="progress-fill" style="width:91%"></div></div>
+
+  <div class="card">
+    <div class="card-title">Why use both?</div>
+    <div class="card-body">Terraform is great at creating cloud resources but not at configuring what's running inside them. Ansible is great at configuring servers but not at provisioning cloud infrastructure. Together they cover the full stack.</div>
+    <div class="tamil">Terraform = cloud resources create செய்வதில் expert. Software config-ல் weak. Ansible = servers configure செய்வதில் expert. Cloud provisioning-ல் weak. Together = complete automation!</div>
+  </div>
+
+  <div class="diag">
+    <svg viewBox="0 0 640 120" xmlns="http://www.w3.org/2000/svg">
+      <defs><marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect x="10" y="35" width="90" height="50" rx="5" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+      <text x="55" y="56" text-anchor="middle" font-size="11" fill="#042C53" font-family="sans-serif" font-weight="500">Git push</text>
+      <text x="55" y="72" text-anchor="middle" font-size="10" fill="#0C447C" font-family="sans-serif">code change</text>
+      <line x1="101" y1="60" x2="119" y2="60" stroke="#888" stroke-width="0.5" marker-end="url(#ar3)"/>
+      <rect x="120" y="35" width="110" height="50" rx="5" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+      <text x="175" y="56" text-anchor="middle" font-size="11" fill="#26215C" font-family="sans-serif" font-weight="500">Terraform</text>
+      <text x="175" y="72" text-anchor="middle" font-size="10" fill="#3C3489" font-family="sans-serif">EC2 · VPC · RDS</text>
+      <line x1="231" y1="60" x2="249" y2="60" stroke="#888" stroke-width="0.5" marker-end="url(#ar3)"/>
+      <rect x="250" y="35" width="120" height="50" rx="5" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+      <text x="310" y="56" text-anchor="middle" font-size="11" fill="#26215C" font-family="sans-serif" font-weight="500">Ansible</text>
+      <text x="310" y="72" text-anchor="middle" font-size="10" fill="#3C3489" font-family="sans-serif">Install · Configure · Start</text>
+      <line x1="371" y1="60" x2="389" y2="60" stroke="#888" stroke-width="0.5" marker-end="url(#ar3)"/>
+      <rect x="390" y="35" width="110" height="50" rx="5" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+      <text x="445" y="56" text-anchor="middle" font-size="11" fill="#04342C" font-family="sans-serif" font-weight="500">Tests pass</text>
+      <text x="445" y="72" text-anchor="middle" font-size="10" fill="#085041" font-family="sans-serif">smoke tests run</text>
+      <line x1="501" y1="60" x2="519" y2="60" stroke="#888" stroke-width="0.5" marker-end="url(#ar3)"/>
+      <rect x="520" y="35" width="105" height="50" rx="5" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+      <text x="572" y="56" text-anchor="middle" font-size="11" fill="#173404" font-family="sans-serif" font-weight="500">Production</text>
+      <text x="572" y="72" text-anchor="middle" font-size="10" fill="#27500A" font-family="sans-serif">live!</text>
+      <text x="320" y="110" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">Full pipeline: Terraform provisions → Ansible configures → tests → production</text>
+    </svg>
+  </div>
+
+  <div class="code"><span class="cmt"># Step 1: Terraform creates EC2, outputs IP</span>
+<span class="kw">resource</span> <span class="str">"aws_instance"</span> <span class="str">"web"</span> {
+  ami           = <span class="fn">data</span>.aws_ami.latest.id
+  instance_type = <span class="str">"t3.medium"</span>
+  key_name      = <span class="str">"my-key"</span>
+  tags          = { Name = <span class="str">"web-server"</span> }
+}
+
+<span class="kw">output</span> <span class="str">"web_ip"</span> { value = <span class="fn">aws_instance</span>.web.public_ip }
+
+<span class="cmt"># Step 2: Pass Terraform output to Ansible inventory</span>
+<span class="cmt"># (via local-exec provisioner or CI/CD script)</span>
+<span class="kw">resource</span> <span class="str">"null_resource"</span> <span class="str">"ansible_run"</span> {
+  <span class="fn">depends_on</span> = [aws_instance.web]
+  <span class="fn">provisioner</span> <span class="str">"local-exec"</span> {
+    command = <span class="str">"ansible-playbook -i '${aws_instance.web.public_ip},' site.yml"</span>
+  }
+}</div>
+
+  <div class="code"><span class="cmt"># Better: dynamic inventory (reads from AWS directly)</span>
+$ ansible-playbook -i aws_ec2.yml site.yml
+
+<span class="cmt"># aws_ec2.yml — dynamic inventory plugin</span>
+<span class="fn">plugin</span>: amazon.aws.aws_ec2
+<span class="fn">regions</span>:
+  - ap-south-1
+<span class="fn">filters</span>:
+  tag:ManagedBy: Terraform
+  instance-state-name: running
+<span class="fn">keyed_groups</span>:
+  - key: tags.Environment
+    prefix: env</div>
+
+  <div class="rw">
+    <div class="rw-label">Real-world: full pipeline at Razorpay</div>
+    <div class="rw-body"><strong>Complete automation flow:</strong> Developer merges a PR → GitHub Actions triggers → Terraform provisions new EC2 instances in AWS (ap-south-1) → Ansible playbook runs automatically → installs Java, deploys the payment service JAR, configures environment variables, starts the service, sets up log rotation → smoke tests run → traffic shifts to new servers via ALB → old servers terminated by Terraform. Zero human involvement after the PR merge.<br><br><strong>Razorpay (தமிழ்):</strong> PR merge ஆனதும் → GitHub Actions → Terraform EC2 create → Ansible Java install + app deploy + config → smoke tests → traffic shift → old servers destroy. End-to-end full automation — ஒரு manual step-உம் இல்லை!</div>
+  </div>
+</div>
+
+<!-- 13 — Master Ansible -->
+<div class="section" id="s13">
+  <div class="ch-eye">Chapter 13 · Master · Ansible</div>
+  <div class="ch-title">Master Level Ansible</div>
+  <div class="ch-sub">Vault · dynamic inventory · molecule testing · AWX/Tower</div>
+  <div class="progress"><div class="progress-fill" style="width:100%"></div></div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num"><i class="ti ti-lock" aria-hidden="true"></i></div>
+      <div class="step-body">
+        <div class="step-title">Ansible Vault — secrets management</div>
+        <div class="step-desc">Encrypt sensitive data (passwords, API keys) in your playbooks and variable files. Vault-encrypted files can be safely committed to Git. Decrypt at runtime with a password or key file.</div>
+        <div class="step-tamil">Ansible Vault = secrets encrypt செய்யும். Passwords, API keys-ஐ encrypt செய்து Git-ல் commit செய்யலாம். Runtime-ல் decrypt ஆகும்.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"><i class="ti ti-database" aria-hidden="true"></i></div>
+      <div class="step-body">
+        <div class="step-title">Dynamic inventory</div>
+        <div class="step-desc">Instead of a static hosts file, query AWS/Azure/GCP for running instances in real time. When Terraform adds new servers, Ansible automatically discovers them — no manual inventory updates.</div>
+        <div class="step-tamil">Static inventory file-க்கு பதிலாக AWS-ல் இருந்து live-ஆக servers query செய்யும். Terraform new servers create செய்தால் Ansible automatically discover செய்யும்.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"><i class="ti ti-test-pipe" aria-hidden="true"></i></div>
+      <div class="step-body">
+        <div class="step-title">Molecule — test your roles</div>
+        <div class="step-desc">Testing framework for Ansible roles. Spins up a Docker container or VM, runs your role, then verifies the expected outcome. Write tests before roles — TDD for infrastructure configuration.</div>
+        <div class="step-tamil">Molecule = Ansible roles-க்கு testing framework. Docker container-ல் role run செய்து, expected outcome verify செய்யும். Infrastructure config-க்கும் TDD possible!</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"><i class="ti ti-layout-dashboard" aria-hidden="true"></i></div>
+      <div class="step-body">
+        <div class="step-title">AWX / Ansible Tower — web UI for teams</div>
+        <div class="step-desc">Web-based UI for running Ansible playbooks across an organisation. Role-based access control, scheduling, audit logs, credential management. AWX is the open-source version; Tower is enterprise (Red Hat).</div>
+        <div class="step-tamil">AWX = Ansible-இன் web UI. Team members browser-ல் playbooks run செய்யலாம். RBAC, scheduling, audit logs — enterprise-grade Ansible management.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code"><span class="cmt"># Ansible Vault — encrypt secrets</span>
+$ ansible-vault encrypt_string 'myS3cretP@ss' --name 'db_password'
+$ ansible-vault encrypt vars/secrets.yml
+$ ansible-vault view vars/secrets.yml
+
+<span class="cmt"># In your playbook — use encrypted var normally</span>
+<span class="fn">vars_files</span>:
+  - vars/secrets.yml   <span class="cmt"># vault-encrypted file</span>
+
+<span class="fn">tasks</span>:
+  - <span class="fn">name</span>: Configure DB password
+    <span class="fn">ansible.builtin.template</span>:
+      src: app.conf.j2
+      dest: /etc/app/app.conf
+    <span class="cmt"># {{ db_password }} used inside template — auto-decrypted</span>
+
+<span class="cmt"># Run with vault password</span>
+$ ansible-playbook site.yml --vault-password-file ~/.vault_pass</div>
+
+  <div class="card">
+    <div class="card-title">Full DevOps skill picture</div>
+    <div class="card-body">
+      <table class="tbl">
+        <tr><th>Tool</th><th>Layer</th><th>What it does</th><th>When</th></tr>
+        <tr><td>Terraform</td><td>Provision</td><td>Creates cloud infra (EC2, VPC, RDS)</td><td>First</td></tr>
+        <tr><td>Ansible</td><td>Configure</td><td>Sets up software inside servers</td><td>Second</td></tr>
+        <tr><td>Docker</td><td>Package</td><td>Packages app + dependencies</td><td>Build time</td></tr>
+        <tr><td>Kubernetes</td><td>Orchestrate</td><td>Runs containers at scale</td><td>Runtime</td></tr>
+        <tr><td>CI/CD</td><td>Automate</td><td>Ties all the above together</td><td>Always</td></tr>
+      </table>
+    </div>
+    <div class="tamil">Terraform = infrastructure create. Ansible = server configure. Docker = app package. Kubernetes = containers orchestrate. CI/CD = எல்லாவற்றையும் automate செய். இந்த 5 tools together = complete DevOps engineer.</div>
+  </div>
+
+  <div class="info"><i class="ti ti-target" aria-hidden="true"></i> <strong>Your next project:</strong> Terraform creates an EC2 instance → Ansible installs Docker on it → Docker runs your app container → GitHub Actions triggers both Terraform and Ansible automatically on every merge. Build this one project and you will cover all five tools in one go.<br><span style="font-style:italic;opacity:.8">உங்கள் next project: Terraform EC2 create → Ansible Docker install → Docker app run → GitHub Actions automate. ஒரே project-ல் 5 skills demonstrate!</span></div>
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+const chapters=[
+  {id:'s0', num:'00', label:'What is Terraform?', lv:'b', tool:'Terraform'},
+  {id:'s1', num:'01', label:'Why Terraform?', lv:'b', tool:'Terraform'},
+  {id:'s2', num:'02', label:'Architecture', lv:'b', tool:'Terraform'},
+  {id:'s3', num:'03', label:'Core lifecycle', lv:'b', tool:'Terraform'},
+  {id:'s4', num:'04', label:'HCL language', lv:'i', tool:'Terraform'},
+  {id:'s5', num:'05', label:'State management', lv:'i', tool:'Terraform'},
+  {id:'s6', num:'06', label:'Modules', lv:'i', tool:'Terraform'},
+  {id:'s7', num:'07', label:'Workspaces & best practices', lv:'a', tool:'Terraform'},
+  {id:'s8', num:'08', label:'What is Ansible?', lv:'b', tool:'Ansible'},
+  {id:'s9', num:'09', label:'Ansible architecture', lv:'b', tool:'Ansible'},
+  {id:'s10',num:'10', label:'Playbooks & YAML', lv:'i', tool:'Ansible'},
+  {id:'s11',num:'11', label:'Roles & Galaxy', lv:'i', tool:'Ansible'},
+  {id:'s12',num:'12', label:'Terraform + Ansible', lv:'a', tool:'Ansible'},
+  {id:'s13',num:'13', label:'Master Ansible', lv:'m', tool:'Ansible'},
+];
+const lvClass={b:'lv-b',i:'lv-i',a:'lv-a',m:'lv-m'};
+const lvLabel={b:'Beginner',i:'Intermediate',a:'Advanced',m:'Master'};
+const sidebar=document.getElementById('sidebar');
+const mobNav=document.getElementById('mobNav');
+let lastTool='';
+chapters.forEach((ch,i)=>{
+  if(ch.tool!==lastTool){
+    const div=document.createElement('div');
+    div.style.cssText='padding:8px 14px 4px;font-size:9px;letter-spacing:2px;color:var(--color-text-tertiary);text-transform:uppercase;border-top:'+(lastTool?'0.5px solid var(--color-border-tertiary)':'none');
+    div.textContent=ch.tool;
+    sidebar.appendChild(div);
+    lastTool=ch.tool;
+  }
+  const item=document.createElement('div');
+  item.className='nav-item'+(i===0?' active':'');
+  item.innerHTML=`<span class="nav-num">${ch.num}</span><span class="nav-label">${ch.label}</span><span class="nav-lv ${lvClass[ch.lv]}">${lvLabel[ch.lv]}</span>`;
+  item.onclick=()=>show(i);
+  sidebar.appendChild(item);
+
+  const btn=document.createElement('button');
+  btn.className='mob-btn'+(i===0?' active':'');
+  btn.textContent=ch.num+' · '+ch.label;
+  btn.onclick=()=>show(i);
+  mobNav.appendChild(btn);
+});
+
+function show(idx){
+  document.querySelectorAll('.section').forEach((s,j)=>s.classList.toggle('active',j===idx));
+  document.querySelectorAll('.nav-item').forEach((b,j)=>b.classList.toggle('active',j===idx));
+  document.querySelectorAll('.mob-btn').forEach((b,j)=>b.classList.toggle('active',j===idx));
+  document.querySelectorAll('.mob-btn')[idx].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  document.getElementById('mainContent').scrollTo(0,0);
+}
+</script>
